@@ -6,19 +6,32 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:00:03 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/08 15:28:06 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/11 18:42:04 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+void	init(t_param *set)
+{
+	set->res_x = -1;
+	set->res_y = -1;
+	set->f_b = -1;
+	set->f_r = -1;
+	set->f_g = -1;
+}
+
+int		main(int argc, char **argv)
 {
 	t_param	*set;
 
-	if (!(set = malloc(sizeof(t_param))))
-		return (0);
 	if (argc == 2)
+	{
+		if (!(set = malloc(sizeof(t_param))))
+			return (-1);
+		init(set);
 		param_trim(argv[1], set);
+	}
+	free(set);
 	return (0);
 }

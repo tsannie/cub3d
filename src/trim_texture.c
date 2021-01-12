@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 17:53:36 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 12:07:42 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/12 17:48:33 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		trim_textno(char *line, int *n, t_param *set)
 		i++;
 	set->text_no = ft_strdup(&line[i]);
 	if (!(set->text_no) || check_open(set->text_no) == -1)
-		return (error_text("texture nord (NO).\n", line));
+		return (error_text("la texture nord (NO).\n", line));
 	else
 	{
 		(*n)++;
@@ -38,7 +38,7 @@ int		trim_textso(char *line, int *n, t_param *set)
 		i++;
 	set->text_so = ft_strdup(&line[i]);
 	if (!(set->text_so) || check_open(set->text_so) == -1)
-		return (error_text("texture sud (SO).\n", line));
+		return (error_text("la texture sud (SO).\n", line));
 	else
 	{
 		(*n)++;
@@ -55,7 +55,7 @@ int		trim_textwe(char *line, int *n, t_param *set)
 		i++;
 	set->text_we = ft_strdup(&line[i]);
 	if (!(set->text_we) || check_open(set->text_we) == -1)
-		return (error_text("texture ouest (WE).\n", line));
+		return (error_text("la texture ouest (WE).\n", line));
 	else
 	{
 		(*n)++;
@@ -72,7 +72,7 @@ int		trim_textea(char *line, int *n, t_param *set)
 		i++;
 	set->text_ea = ft_strdup(&line[i]);
 	if (!(set->text_ea) || check_open(set->text_ea) == -1)
-		return (error_text("texture est (EA).\n", line));
+		return (error_text("la texture est (EA).\n", line));
 	else
 	{
 		(*n)++;
@@ -89,7 +89,7 @@ int		trim_texts(char *line, int *n, t_param *set)
 		i++;
 	set->text_s = ft_strdup(&line[i]);
 	if (!(set->text_s) || check_open(set->text_s) == -1)
-		return (error_text("texture sprite (S).\n", line));
+		return (error_text("la texture sprite (S).\n", line));
 	else
 	{
 		(*n)++;

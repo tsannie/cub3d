@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:38:30 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 09:53:49 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/12 17:42:57 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int		error_reso(void)
 
 int		error_text(char *str, char *line)
 {
-	ft_putstr_fd("Error\nProblème sur le chemin vers la ", 1);
+	ft_putstr_fd("Error\nProblème sur le chemin vers ", 1);
 	ft_putstr_fd(str, 1);
 	if (line[ft_strlen(line) - 1] == ' ')
 		ft_putstr_fd("Attention aux espaces en fin de ligne !\n", 1);
-	return(-1);
+	return (-1);
 }
 
 int		error_param(void)
@@ -47,8 +47,18 @@ int		error_color(int a)
 	return (-1);
 }
 
-int		error_map(void)
+int		error_map(int a)
 {
-	ft_putstr_fd("Error\nProblème sur la map.\n", 1);
+	ft_putstr_fd("Error\nProblème sur la map :\n", 1);
+	if (a == 1)
+		ft_putstr_fd("Plusieurs/Aucun point(s) de spawn détecté(s).\n", 1);
+	if (a == 2)
+		ft_putstr_fd("Caractère inconnu.\n", 1);
+	if (a == 3)
+		ft_putstr_fd("Le point de spawn n'est pas à l'intérieur.\n", 1);
+	if (a == 4)
+		ft_putstr_fd("Tout les '0' ne sont pas entourés.\n", 1);
+	if (a == 5)
+		ft_putstr_fd("Tout les '2' ne sont pas entourés.\n", 1);
 	return (-1);
 }

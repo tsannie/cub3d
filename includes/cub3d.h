@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 11:38:44 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/12 18:39:45 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
+#include <mlx.h>
 
 # include <stdio.h>
 
@@ -48,20 +49,30 @@ typedef struct	s_param{
 }				t_param;
 
 int		param_trim(char *str, t_param *set);
+int		next_gnl(char *str, int *n, t_param *set);
+int		trim_reso(char *line, int *n, t_param *set);
+int		clr_ground(char *line, int *n, t_param *set);
+int		clr_ceiling(char *line, int *n, t_param *set);
 int		trim_textno(char *line, int *n, t_param *set);
 int		trim_textso(char *line, int *n, t_param *set);
 int		trim_textwe(char *line, int *n, t_param *set);
 int		trim_textea(char *line, int *n, t_param *set);
 int		trim_texts(char *line, int *n, t_param *set);
 int		check_open(char *str);
-int		check_map(char *line, t_param *set);
+int		trim_map(char *line, t_param *set);
 
 int		error_reso(void);
 int		error_param(void);
 int		error_text(char *str, char *line);
 int		error_color(int a);
-int		error_map(void);
+int		error_map(int a);
 
 void	print_struct(t_param *set);
+void	print_map(t_param *set);
+
+int		check_map(t_param *set);
+int		logic_map(t_param *set);
+
+int     start_cub(t_param *set);
 
 #endif

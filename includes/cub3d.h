@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/11 18:37:07 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/12 11:38:44 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ typedef struct	s_param{
 	int			c_g;
 	int			c_b;
 
-	char		**map; 
+	char		**map;
+	int			size_map;
+	char		*cpy;
+	char		pos;
 }				t_param;
 
 int		param_trim(char *str, t_param *set);
@@ -51,11 +54,13 @@ int		trim_textwe(char *line, int *n, t_param *set);
 int		trim_textea(char *line, int *n, t_param *set);
 int		trim_texts(char *line, int *n, t_param *set);
 int		check_open(char *str);
+int		check_map(char *line, t_param *set);
 
 int		error_reso(void);
 int		error_param(void);
 int		error_text(char *str, char *line);
 int		error_color(int a);
+int		error_map(void);
 
 void	print_struct(t_param *set);
 

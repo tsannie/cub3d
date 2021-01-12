@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:38:30 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/11 18:38:39 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/12 09:53:49 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,11 @@ int		error_color(int a)
 		ft_putstr_fd("plafond (C)\n", 1);
 	ft_putstr_fd("Merci de relancer avec un format correct\n"
 	"Exemple: \"C 220,100,20\"\n", 1);
+	return (-1);
+}
+
+int		error_map(void)
+{
+	ft_putstr_fd("Error\nProblème sur la map.\n", 1);
 	return (-1);
 }

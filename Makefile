@@ -6,7 +6,7 @@
 #    By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 11:00:45 by tsannie           #+#    #+#              #
-#    Updated: 2021/01/11 17:53:43 by tsannie          ###   ########.fr        #
+#    Updated: 2021/01/12 09:41:09 by tsannie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ END			:= $(shell tput -Txterm sgr0)
 NAMEC		= ${BLUE}${BOLD}c$(RED)u$(GREEN)b$(PURPLE)3D${END}
 NAMELIB		= ${BLUE}${BOLD}Libft${END}
 
-SRC			= main.c trim.c error_msg.c tools_for_dev.c trim_texture.c
+SRC			= main.c trim.c error_msg.c tools_for_dev.c trim_texture.c \
+check_map.c
 
 SRC_BONUS 	= \
 

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:14:47 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 18:05:45 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/13 12:18:29 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		trim_map(char *line, t_param *set)
 	else
 		set->cpy = ft_strjoin(set->cpy, line);
 	set->cpy = ft_strjoin(set->cpy, "\n");
-	set->size_map++;
+	set->size_map_x++;
 	return (1);
 }
 
@@ -70,7 +70,7 @@ int		next_gnl(char *str, int *n, t_param *set)
 	int ret;
 
 	i = 0;
-	while (str[i] || (str[0] == '\0' && *n == 8 && set->size_map != 0))
+	while (str[i] || (str[0] == '\0' && *n == 8 && set->size_map_x != 0))
 	{
 		if (str[i] == 'R' && *n == 0)
 			return (trim_reso(&str[i], n, set));

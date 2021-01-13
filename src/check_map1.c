@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 09:08:46 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 17:59:20 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/13 12:20:15 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		most_long(t_param *set)
 			ml = ft_strlen(set->map[i]);
 		i++;
 	}
+	set->size_map_y = ml;
 	return (ml);
 }
 

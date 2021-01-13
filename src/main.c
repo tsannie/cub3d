@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:00:03 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 18:21:17 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/13 12:17:54 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init(t_param *set)
 	set->f_b = -1;
 	set->f_r = -1;
 	set->f_g = -1;
-	set->size_map = 0;
+	set->size_map_x = 0;
 }
 
 int		main(int argc, char **argv)

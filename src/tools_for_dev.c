@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 17:21:10 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 17:26:20 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/13 12:18:43 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_struct(t_param *set)
 	printf("c_r = |%d|\n", set->c_r);
 	printf("c_g = |%d|\n", set->c_g);
 	printf("c_b = |%d|\n", set->c_b);
-	printf("size_map = %d\n", set->size_map);
+	printf("size_map = %d\n", set->size_map_x);
 	i = 0;
 	printf("map : \n");
 	while (set->map[i] && set->map)

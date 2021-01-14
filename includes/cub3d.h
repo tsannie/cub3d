@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/13 18:42:53 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/14 17:48:46 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
-#include <mlx.h>
-
+# include "../minilibx_opengl_20191021/mlx.h"
+# include <math.h>
 # include <stdio.h>
 
 typedef struct	s_param{
@@ -66,6 +66,9 @@ typedef struct	s_param{
 	float		pps_y;
 	float		ppe_x;
 	float		ppe_y;
+	float		perso_x;
+	float		perso_y;
+	float		orient_p;
 
 	void		*img;
 	char		*addr;
@@ -101,13 +104,15 @@ int		logic_map(t_param *set);
 
 int		start_cub(t_param *set);
 
+void	set_orient(t_param *set);
+void	middle_point(t_param *set);
 int		create_color(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_param *set, int x, int y, int color);
-int		*create_coord(int cord[4], int x_start, int y_start, int x_end, int y_end);
+int		*create_coord(int x_start, int y_start, int x_end, int y_end);
 void	print_square(t_param *set, int *cord, int color);
-void	print_minimap(t_param *set, int a);
+void	minimap(t_param *set, int a);
 void	map_in_minimap(t_param *set, int a);
 int		moove_player(int keycode, t_param *set);
-void	change_pos(t_param *set, int a);
+void	colision(t_param *set, int a);
 
 #endif

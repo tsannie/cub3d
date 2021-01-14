@@ -6,14 +6,14 @@
 #    By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 11:00:45 by tsannie           #+#    #+#              #
-#    Updated: 2021/01/13 18:18:54 by tsannie          ###   ########.fr        #
+#    Updated: 2021/01/14 11:48:44 by tsannie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= cub3D
 CC			= @gcc
-CFLAGS		= -Wall -Wextra -Werror
-MLX			= -I minilibx_opengl_20191021 -g -L minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit
+CFLAGS		= #-Wall -Wextra -Werror
+MLX			= -I/minilibx_opengl_20191021 -g -L minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit
 RM			= @rm -rf
 LIBFT		= ./libft
 

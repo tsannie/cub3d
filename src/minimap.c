@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:00:35 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/13 18:46:51 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/14 17:39:04 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_minimap(t_param *set)
 	int		res;
 
 	res = (set->res_x < set->res_y) ? set->res_x : set->res_y;
-	set->resm_x = res / 2;
-	set->resm_y = res / 2;
+	set->resm_x = res / 1.2;
+	set->resm_y = res / 1.2;
 	set->start_x = res / 60;
 	set->start_y = res / 60;
 	set->end_x = set->resm_x + set->start_x;
@@ -35,7 +35,7 @@ void	init_minimap(t_param *set)
 
 void	save_pos(t_param *set)
 {
-	int		cord[4];
+	int		*cord;
 	int		a;
 
 	a = set->size_cub / 3;
@@ -43,13 +43,14 @@ void	save_pos(t_param *set)
 	set->pps_y = set->s_y + (a);
 	set->ppe_x = set->e_x - (a);
 	set->ppe_y = set->e_y - (a);
-	print_square(set, create_coord(cord, set->pps_x, set->pps_y,
+	print_square(set, cord = create_coord(set->pps_x, set->pps_y,
 		set->ppe_x, set->ppe_y), create_color(0, 11, 13, 12));
+	free(cord);
 }
 
 void	map_in_minimap(t_param *set, int a)
 {
-	int		cord[4];
+	int		*cord;
 	int		i;
 	int		e;
 
@@ -62,17 +63,17 @@ void	map_in_minimap(t_param *set, int a)
 		while (set->map[i][e])
 		{
 			if (set->map[i][e] == '1')
-				print_square(set, create_coord(cord, set->s_x, set->s_y,
+				print_square(set, cord = create_coord(set->s_x, set->s_y,
 					set->e_x, set->e_y), create_color(0, 225, 159, 26));
 			if (set->map[i][e] == '0')
-				print_square(set, create_coord(cord, set->s_x, set->s_y,
+				print_square(set, cord = create_coord(set->s_x, set->s_y,
 					set->e_x, set->e_y), create_color(0, 225, 26, 65));
 			if (set->map[i][e] == '2')
-				print_square(set, create_coord(cord, set->s_x, set->s_y,
+				print_square(set, cord = create_coord(set->s_x, set->s_y,
 					set->e_x, set->e_y), create_color(0, 168, 26, 225));
 			if (set->map[i][e] == set->pos)
 			{
-				print_square(set, create_coord(cord, set->s_x, set->s_y,
+				print_square(set, cord = create_coord(set->s_x, set->s_y,
 					set->e_x, set->e_y), create_color(0, 206, 188, 214));
 				if (a == 0)
 					save_pos(set);
@@ -86,16 +87,19 @@ void	map_in_minimap(t_param *set, int a)
 		i++;
 	}
 	if (a != 0)
-		change_pos(set, a);
+		colision(set, a);
+	middle_point(set);
+	free(cord);
 }
 
-void	print_minimap(t_param *set, int a)
+void	minimap(t_param *set, int a)
 {
-	int			cord[4];
+	int			*cord;
 
 	printf("regen map a = |%d| [...]\n", a);
 	init_minimap(set);
-	print_square(set, create_coord(cord, set->start_x, set->start_y,
+	print_square(set, cord = create_coord(set->start_x, set->start_y,
 		set->end_x, set->end_y), create_color(0, 255, 255, 255));
 	map_in_minimap(set, a);
+	free(cord);
 }

@@ -557,7 +557,7 @@ int get_mouse_button(NSEventType eventtype)
 
   glUniform2f(glsl.loc_image_winhalfsize, size_x/2, size_y/2);
   glUniform2f(glsl.loc_image_pos, x, size_y - y);
-  glUniform2f(glsl.loc_image_size, set->width, -set->height);
+  glUniform2f(glsl.loc_image_size, img->width, -img->height);
 
   glBindBuffer(GL_ARRAY_BUFFER, imgctx->vbuffer);
   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLfloat), (void*)0);
@@ -594,7 +594,7 @@ int get_mouse_button(NSEventType eventtype)
   glUniform2f(glsl.loc_font_winhalfsize, size_x/2, size_y/2);
   glUniform2f(glsl.loc_font_posinwin, x, size_y - 1 - y);
   glUniform2f(glsl.loc_font_posinatlas, gx, gy);
-  glUniform2f(glsl.loc_font_atlassize, set->width, set->height);
+  glUniform2f(glsl.loc_font_atlassize, img->width, img->height);
 
   glBindBuffer(GL_ARRAY_BUFFER, imgctx->vbuffer);
   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLfloat), (void*)0);
@@ -620,7 +620,7 @@ int get_mouse_button(NSEventType eventtype)
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, pixel_vbuffer);
   glUniform1i(glsl.loc_pixel_texture, 0);
-
+  
   glBindBuffer(GL_ARRAY_BUFFER, pixel_vbuffer);
   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLfloat), (void*)0);
   glEnableVertexAttribArray(0);
@@ -636,14 +636,14 @@ int get_mouse_button(NSEventType eventtype)
   while (pixel_nb--) pixtexbuff[pixel_nb] = 0xFF000000;
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, size_x, size_y, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixtexbuff);
   pixel_nb = 0;
-
+  
 }
 
 @end
 
 
 // mlx API
-
+ 
 
 void *mlx_new_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title)
 {

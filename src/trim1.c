@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 13:57:08 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 17:57:23 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/18 07:53:05 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int		param_trim(char *str, t_param *set)
 	if (!(line = malloc(sizeof(char**))))
 		return (-1);
 	fd = open(str, O_RDONLY);
-	if (fd < 1)
+	if (fd < 1 || correct_name(str) == 0)
 		return (error_text("le config file (.cub).\n", str));
 	n = 0;
 	k = 1;

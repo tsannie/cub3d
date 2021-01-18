@@ -6,17 +6,26 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:14:47 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/13 12:18:29 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/18 16:43:39 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+int		correct_name(char *str)
+{
+	if ((str[ft_strlen(str) - 1] != 'b'
+	|| str[ft_strlen(str) - 2] != 'u' || str[ft_strlen(str) - 3] != 'c'
+	|| str[ft_strlen(str) - 4] != '.'))
+		return (0);
+	return (1);
+}
+
 int		is_object(char a)
 {
 	if (a == '0' || a == '1' || a == '2'
 		|| a == 'N' || a == 'S' || a == 'E'
-		|| a == 'Z' || a == ' ')
+		|| a == 'W' || a == ' ')
 		return (1);
 	return (0);
 }

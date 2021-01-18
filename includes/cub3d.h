@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/14 17:48:46 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/18 14:37:00 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,9 @@ typedef struct	s_param{
 	void		*mlx;
 	void		*win;
 
-	float		resm_x;
-	float		resm_y;
-	float		start_x;
-	float		start_y;
-	float		end_x;
-	float		end_y;
+	float		resm_size;
+	float		start_size;
+	float		end_size;
 	float		size_cub;
 	float 		s_x;
 	float		s_y;
@@ -78,6 +75,7 @@ typedef struct	s_param{
 }				t_param;
 
 int		param_trim(char *str, t_param *set);
+int		correct_name(char *str);
 int		next_gnl(char *str, int *n, t_param *set);
 int		trim_reso(char *line, int *n, t_param *set);
 int		clr_ground(char *line, int *n, t_param *set);
@@ -98,12 +96,14 @@ int		error_map(int a);
 
 void	print_struct(t_param *set);
 void	print_map(t_param *set);
+void	print_line(t_param *set);
 
 int		check_map(t_param *set);
 int		logic_map(t_param *set);
 
 int		start_cub(t_param *set);
 
+float	exter_point(t_param *set, float value, int a);
 void	set_orient(t_param *set);
 void	middle_point(t_param *set);
 int		create_color(int t, int r, int g, int b);

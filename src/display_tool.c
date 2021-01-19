@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:01:36 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/18 16:39:32 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/19 09:46:23 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,40 +36,6 @@ int		*create_coord(int x_start, int y_start, int x_end, int y_end)
 	cord[2] = x_end;
 	cord[3] = y_end;
 	return (cord);
-}
-
-
-void	print_line(t_param *set)
-{
-	float dx;
-	float dy;
-	int i;
-	int e;
-	int r;
-	float angle;
-	//int cpt;
-
-	angle = set->orient_p - M_PI / 8;
-	middle_point(set);
-	//cpt = 0;
-	while (angle <= (set->orient_p + (M_PI / 8)))
-	{
-		dx = set->perso_x;
-		dy = set->perso_y;
-		i = (dx - set->start_size) / set->size_cub;
-		e = (dy - set->start_size) / set->size_cub;
-		while (set->map[e][i] != '1' && set->map[e][i] != ' ')
-		{
-			my_mlx_pixel_put(set, dx, dy, create_color(0, 176, 0, 144));
-			dx = dx + (cos(angle));
-			dy = dy + (sin(angle));
-			i = (dx - set->start_size) / set->size_cub;
-			e = (dy - set->start_size) / set->size_cub;
-		}
-		//cpt++;
-		angle = angle + M_PI / 1024;
-	}
-	//printf("cpt = {%d}\n", cpt);
 }
 
 void	middle_point(t_param *set)

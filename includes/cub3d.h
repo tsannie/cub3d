@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/18 14:37:00 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/19 17:04:11 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ typedef struct	s_param{
 	float		perso_x;
 	float		perso_y;
 	float		orient_p;
+	int			i_line;
+	float		dx;
+	float		dy;
+	float		angle;
 
 	void		*img;
 	char		*addr;
@@ -97,6 +101,7 @@ int		error_map(int a);
 void	print_struct(t_param *set);
 void	print_map(t_param *set);
 void	print_line(t_param *set);
+void	print_ground(t_param *set);
 
 int		check_map(t_param *set);
 int		logic_map(t_param *set);

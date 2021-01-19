@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:00:35 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/18 16:04:43 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/19 16:16:15 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_minimap(t_param *set)
 	int		res;
 
 	res = (set->res_x < set->res_y) ? set->res_x : set->res_y;
-	set->resm_size = res / 1.2;
-	set->start_size = res / 60;
+	set->resm_size = res / 3;
+	set->start_size = res / 20;
 	set->end_size = set->resm_size + set->start_size;
 	if ((set->resm_size / set->size_map_x) < (set->resm_size / set->size_map_y))
 		set->size_cub = (set->resm_size / set->size_map_x);
@@ -28,8 +28,7 @@ void	init_minimap(t_param *set)
 	set->s_y = set->start_size;
 	set->e_x = set->size_cub + set->start_size;
 	set->e_y = set->size_cub + set->start_size;
-
-
+	set->i_line = -1;
 }
 
 void	save_pos(t_param *set, int a)
@@ -104,9 +103,12 @@ void	minimap(t_param *set, int a)
 
 	//printf("regen map a = |%d| [...]\n", a);
 	init_minimap(set);
-	print_square(set, cord = create_coord(set->start_size, set->start_size,
-		set->end_size, set->end_size), create_color(0, 255, 255, 255));
+	if (a != -2)
+		print_ground(set);
+	//print_square(set, cord = create_coord(set->start_size, set->start_size,
+	//	set->end_size, set->end_size), create_color(0, 255, 255, 255));
 	map_in_minimap(set, a);
-	print_line(set);
-	free(cord);
+	if (a != -2)
+		print_line(set);
+	//free(cord);
 }

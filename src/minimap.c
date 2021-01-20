@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:00:35 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/19 16:16:15 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/20 15:29:00 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_minimap(t_param *set)
 	int		res;
 
 	res = (set->res_x < set->res_y) ? set->res_x : set->res_y;
-	set->resm_size = res / 3;
+	set->resm_size = res / 2;
 	set->start_size = res / 20;
 	set->end_size = set->resm_size + set->start_size;
 	if ((set->resm_size / set->size_map_x) < (set->resm_size / set->size_map_y))

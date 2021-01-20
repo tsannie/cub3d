@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:32 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/18 16:45:53 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/20 17:15:00 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,18 @@ int	moove_player(int keycode, t_param *set)
 	}
 	if (keycode == 123)
 	{
-		set->orient_p = set->orient_p - M_PI / 24;
+		if (set->orient_p <= -M_PI)
+			set->orient_p = M_PI - M_PI / 28;
+		else
+			set->orient_p = set->orient_p - M_PI / 28;
 		minimap(set, 0);
 	}
 	if (keycode == 124)
 	{
-		set->orient_p = set->orient_p + M_PI / 24;
+		if (set->orient_p >= M_PI)
+			set->orient_p = -M_PI + M_PI / 28;
+		else
+			set->orient_p = set->orient_p + M_PI / 28;
 		minimap(set, 0);
 	}
 	mlx_put_image_to_window(set->mlx, set->win, set->img, 0, 0);

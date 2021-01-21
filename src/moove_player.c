@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:32 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/21 13:33:29 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/21 16:44:02 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	colision(t_param *set, int a)
 		p = (set->pps_y + (set->ppe_x - set->pps_x) - set->start_size) / set->size_cub;
 		i = (set->pps_y - set->start_size) / set->size_cub;
 		e = (set->pps_x - set->start_size) / set->size_cub;
-		if (set->map[i][e] == '1' || set->map[i][g] == '1' || set->map[p][g] == '1' || set->map[p][e] == '1')
+		if (set->map[i][e] == '1' || set->map[i][g] == '1' || set->map[p][g] == '1' || set->map[p][e] == '1'
+			|| set->map[i][e] == '2' || set->map[i][g] == '2' || set->map[p][g] == '2' || set->map[p][e] == '2')
 		{
 			set->pps_y = set->pps_y - (sin(set->orient_p) * speed_moove(set));
 			set->ppe_y = set->ppe_y - (sin(set->orient_p) * speed_moove(set));
@@ -41,7 +42,8 @@ void	colision(t_param *set, int a)
 		p = (set->ppe_y - (set->ppe_x - set->pps_x) - set->start_size) / set->size_cub;
 		i = (set->ppe_y - set->start_size) / set->size_cub;
 		e = (set->ppe_x - set->start_size) / set->size_cub;
-		if (set->map[i][e] == '1' || set->map[i][g] == '1' || set->map[p][g] == '1' || set->map[p][e] == '1')
+		if (set->map[i][e] == '1' || set->map[i][g] == '1' || set->map[p][g] == '1' || set->map[p][e] == '1'
+			|| set->map[i][e] == '2' || set->map[i][g] == '2' || set->map[p][g] == '2' || set->map[p][e] == '2')
 		{
 			set->pps_y = set->pps_y + (sin(set->orient_p) * speed_moove(set));
 			set->ppe_y = set->ppe_y + (sin(set->orient_p) * speed_moove(set));
@@ -55,7 +57,8 @@ void	colision(t_param *set, int a)
 		p = (set->pps_x + (set->ppe_x - set->pps_x) - set->start_size) / set->size_cub;
 		i = (set->pps_y - set->start_size) / set->size_cub;
 		e = (set->pps_x - set->start_size) / set->size_cub;
-		if (set->map[i][e] == '1' || set->map[g][e] == '1' || set->map[g][p] == '1' || set->map[i][p] == '1')
+		if (set->map[i][e] == '1' || set->map[g][e] == '1' || set->map[g][p] == '1' || set->map[i][p] == '1'
+			|| set->map[i][e] == '2' || set->map[g][e] == '2' || set->map[g][p] == '2' || set->map[i][p] == '2')
 		{
 			set->pps_x = set->pps_x - (sin(set->orient_p) * speed_moove(set));
 			set->ppe_x = set->ppe_x - (sin(set->orient_p) * speed_moove(set));
@@ -69,7 +72,8 @@ void	colision(t_param *set, int a)
 		p = (set->ppe_x - (set->ppe_x - set->pps_x) - set->start_size) / set->size_cub;
 		i = (set->ppe_y - set->start_size) / set->size_cub;
 		e = (set->ppe_x - set->start_size) / set->size_cub;
-		if (set->map[i][e] == '1' || set->map[g][e] == '1' || set->map[g][p] == '1' || set->map[i][p] == '1')
+		if (set->map[i][e] == '1' || set->map[g][e] == '1' || set->map[g][p] == '1' || set->map[i][p] == '1'
+			|| set->map[i][e] == '2' || set->map[g][e] == '2' || set->map[g][p] == '2' || set->map[i][p] == '2')
 		{
 			set->pps_x = set->pps_x + (sin(set->orient_p) * speed_moove(set));
 			set->ppe_x = set->ppe_x + (sin(set->orient_p) * speed_moove(set));

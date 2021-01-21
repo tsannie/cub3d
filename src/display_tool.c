@@ -6,11 +6,19 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:01:36 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/19 09:46:23 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/21 16:13:47 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+float		speed_moove(t_param *set)
+{
+	float speed;
+
+	speed = set->size_cub / 5;
+	return (speed);
+}
 
 int		create_color(int t, int r, int g, int b)
 {

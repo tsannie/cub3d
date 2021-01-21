@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:32 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/20 17:15:00 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/21 13:33:29 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	colision(t_param *set, int a)
 		e = (set->pps_x - set->start_size) / set->size_cub;
 		if (set->map[i][e] == '1' || set->map[i][g] == '1' || set->map[p][g] == '1' || set->map[p][e] == '1')
 		{
-			set->pps_y = set->pps_y - (sin(set->orient_p) * (set->size_cub / 7));
-			set->ppe_y = set->ppe_y - (sin(set->orient_p) * (set->size_cub / 7));
-			set->pps_x = set->pps_x - (cos(set->orient_p) * (set->size_cub / 7));
-			set->ppe_x = set->ppe_x - (cos(set->orient_p) * (set->size_cub / 7));
+			set->pps_y = set->pps_y - (sin(set->orient_p) * speed_moove(set));
+			set->ppe_y = set->ppe_y - (sin(set->orient_p) * speed_moove(set));
+			set->pps_x = set->pps_x - (cos(set->orient_p) * speed_moove(set));
+			set->ppe_x = set->ppe_x - (cos(set->orient_p) * speed_moove(set));
 		}
 	}
 	if (a == 2)
@@ -43,10 +43,10 @@ void	colision(t_param *set, int a)
 		e = (set->ppe_x - set->start_size) / set->size_cub;
 		if (set->map[i][e] == '1' || set->map[i][g] == '1' || set->map[p][g] == '1' || set->map[p][e] == '1')
 		{
-			set->pps_y = set->pps_y + (sin(set->orient_p) * (set->size_cub / 7));
-			set->ppe_y = set->ppe_y + (sin(set->orient_p) * (set->size_cub / 7));
-			set->pps_x = set->pps_x + (cos(set->orient_p) * (set->size_cub / 7));
-			set->ppe_x = set->ppe_x + (cos(set->orient_p) * (set->size_cub / 7));
+			set->pps_y = set->pps_y + (sin(set->orient_p) * speed_moove(set));
+			set->ppe_y = set->ppe_y + (sin(set->orient_p) * speed_moove(set));
+			set->pps_x = set->pps_x + (cos(set->orient_p) * speed_moove(set));
+			set->ppe_x = set->ppe_x + (cos(set->orient_p) * speed_moove(set));
 		}
 	}
 	if (a == 3)
@@ -57,10 +57,10 @@ void	colision(t_param *set, int a)
 		e = (set->pps_x - set->start_size) / set->size_cub;
 		if (set->map[i][e] == '1' || set->map[g][e] == '1' || set->map[g][p] == '1' || set->map[i][p] == '1')
 		{
-			set->pps_x = set->pps_x - (sin(set->orient_p) * (set->size_cub / 7));
-			set->ppe_x = set->ppe_x - (sin(set->orient_p) * (set->size_cub / 7));
-			set->pps_y = set->pps_y + (cos(set->orient_p) * (set->size_cub / 7));
-			set->ppe_y = set->ppe_y + (cos(set->orient_p) * (set->size_cub / 7));
+			set->pps_x = set->pps_x - (sin(set->orient_p) * speed_moove(set));
+			set->ppe_x = set->ppe_x - (sin(set->orient_p) * speed_moove(set));
+			set->pps_y = set->pps_y + (cos(set->orient_p) * speed_moove(set));
+			set->ppe_y = set->ppe_y + (cos(set->orient_p) * speed_moove(set));
 		}
 	}
 	if (a == 4)
@@ -71,10 +71,10 @@ void	colision(t_param *set, int a)
 		e = (set->ppe_x - set->start_size) / set->size_cub;
 		if (set->map[i][e] == '1' || set->map[g][e] == '1' || set->map[g][p] == '1' || set->map[i][p] == '1')
 		{
-			set->pps_x = set->pps_x + (sin(set->orient_p) * (set->size_cub / 7));
-			set->ppe_x = set->ppe_x + (sin(set->orient_p) * (set->size_cub / 7));
-			set->pps_y = set->pps_y - (cos(set->orient_p) * (set->size_cub / 7));
-			set->ppe_y = set->ppe_y - (cos(set->orient_p) * (set->size_cub / 7));
+			set->pps_x = set->pps_x + (sin(set->orient_p) * speed_moove(set));
+			set->ppe_x = set->ppe_x + (sin(set->orient_p) * speed_moove(set));
+			set->pps_y = set->pps_y - (cos(set->orient_p) * speed_moove(set));
+			set->ppe_y = set->ppe_y - (cos(set->orient_p) * speed_moove(set));
 		}
 	}
 	print_square(set, cord = create_coord(set->pps_x, set->pps_y,
@@ -88,50 +88,50 @@ int	moove_player(int keycode, t_param *set)
 	//printf("size_cub = [%f]\n", set->size_cub);
 	if (keycode == 13)
 	{
-		set->pps_y = set->pps_y + (sin(set->orient_p) * (set->size_cub / 7));
-		set->ppe_y = set->ppe_y + (sin(set->orient_p) * (set->size_cub / 7));
-		set->pps_x = set->pps_x + (cos(set->orient_p) * (set->size_cub / 7));
-		set->ppe_x = set->ppe_x + (cos(set->orient_p) * (set->size_cub / 7));
+		set->pps_y = set->pps_y + (sin(set->orient_p) * speed_moove(set));
+		set->ppe_y = set->ppe_y + (sin(set->orient_p) * speed_moove(set));
+		set->pps_x = set->pps_x + (cos(set->orient_p) * speed_moove(set));
+		set->ppe_x = set->ppe_x + (cos(set->orient_p) * speed_moove(set));
 		minimap(set, 1);
 	}
 	if (keycode == 1)
 	{
-		set->pps_y = set->pps_y - (sin(set->orient_p) * (set->size_cub / 7));
-		set->ppe_y = set->ppe_y - (sin(set->orient_p) * (set->size_cub / 7));
-		set->pps_x = set->pps_x - (cos(set->orient_p) * (set->size_cub / 7));
-		set->ppe_x = set->ppe_x - (cos(set->orient_p) * (set->size_cub / 7));
+		set->pps_y = set->pps_y - (sin(set->orient_p) * speed_moove(set));
+		set->ppe_y = set->ppe_y - (sin(set->orient_p) * speed_moove(set));
+		set->pps_x = set->pps_x - (cos(set->orient_p) * speed_moove(set));
+		set->ppe_x = set->ppe_x - (cos(set->orient_p) * speed_moove(set));
 		minimap(set, 2);
 	}
 	if (keycode == 0)
 	{
-		set->pps_x = set->pps_x + (sin(set->orient_p) * (set->size_cub / 7));
-		set->ppe_x = set->ppe_x + (sin(set->orient_p) * (set->size_cub / 7));
-		set->pps_y = set->pps_y - (cos(set->orient_p) * (set->size_cub / 7));
-		set->ppe_y = set->ppe_y - (cos(set->orient_p) * (set->size_cub / 7));
+		set->pps_x = set->pps_x + (sin(set->orient_p) * speed_moove(set));
+		set->ppe_x = set->ppe_x + (sin(set->orient_p) * speed_moove(set));
+		set->pps_y = set->pps_y - (cos(set->orient_p) * speed_moove(set));
+		set->ppe_y = set->ppe_y - (cos(set->orient_p) * speed_moove(set));
 		minimap(set, 3);
 	}
 	if (keycode == 2)
 	{
-		set->pps_x = set->pps_x - (sin(set->orient_p) * (set->size_cub / 7));
-		set->ppe_x = set->ppe_x - (sin(set->orient_p) * (set->size_cub / 7));
-		set->pps_y = set->pps_y + (cos(set->orient_p) * (set->size_cub / 7));
-		set->ppe_y = set->ppe_y + (cos(set->orient_p) * (set->size_cub / 7));
+		set->pps_x = set->pps_x - (sin(set->orient_p) * speed_moove(set));
+		set->ppe_x = set->ppe_x - (sin(set->orient_p) * speed_moove(set));
+		set->pps_y = set->pps_y + (cos(set->orient_p) * speed_moove(set));
+		set->ppe_y = set->ppe_y + (cos(set->orient_p) * speed_moove(set));
 		minimap(set, 4);
 	}
 	if (keycode == 123)
 	{
 		if (set->orient_p <= -M_PI)
-			set->orient_p = M_PI - M_PI / 28;
+			set->orient_p = M_PI - M_PI / 50;
 		else
-			set->orient_p = set->orient_p - M_PI / 28;
+			set->orient_p = set->orient_p - M_PI / 50;
 		minimap(set, 0);
 	}
 	if (keycode == 124)
 	{
 		if (set->orient_p >= M_PI)
-			set->orient_p = -M_PI + M_PI / 28;
+			set->orient_p = -M_PI + M_PI / 50;
 		else
-			set->orient_p = set->orient_p + M_PI / 28;
+			set->orient_p = set->orient_p + M_PI / 50;
 		minimap(set, 0);
 	}
 	mlx_put_image_to_window(set->mlx, set->win, set->img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 07:41:37 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 14:25:44 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/21 13:12:37 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ int					ft_minvalue(int a, int b);
 int					ft_maxvalue(int a, int b);
 int					get_next_line(int fd, char **line);
 int					ft_iscolor(int a, int b, int c);
+int					ft_ispair(int a);
 
 #endif

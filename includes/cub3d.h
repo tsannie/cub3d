@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/20 16:02:49 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/21 13:43:03 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ void	minimap(t_param *set, int a);
 void	map_in_minimap(t_param *set, int a);
 int		moove_player(int keycode, t_param *set);
 void	colision(t_param *set, int a);
+float	speed_moove(t_param *set);
 
 #endif

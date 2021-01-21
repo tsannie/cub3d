@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 09:46:14 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/20 17:26:49 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/21 16:37:36 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	ray_cast(t_param *set, float lgr, int clr)
 	if (!(cord = malloc(sizeof(int) * 4)))
 		return ;
 	//printf("\nlgr = %f\n", lgr);
-	size_column = (float)(set->res_y * (set->size_cub * 8)) / lgr;
-	thickness = (float)set->res_x / 512;
+	size_column = (float)(set->res_y * (set->size_cub) * 2) / lgr;
+	thickness = 1;
 	set->i_line++;
 
 	cord[0] = thickness * (float)set->i_line;
@@ -79,24 +79,23 @@ void	ray_cast(t_param *set, float lgr, int clr)
 	//printf("size_column = %f\nthickness = %f\ni_line = %d\n", size_column, thickness, set->i_line);
 }
 
-float	incr_decr(char a, char ei, t_param *set)
+float	incr_decr(char a, char ei, t_param *set, float lgr)
 {
 	float	res;
 
 	if (ei == 'i')
 	{
 		if (a == '-')
-			set->dx = (set->dx - (cos(set->angle)) / 20);
+			set->dx = ((set->dx) * lgr);
 		else if (a == '+')
-			set->dx = (set->dx + (cos(set->angle)) / 20);
+			set->dx = ((set->dx) + (cos(set->angle) * lgr));
 		res = (set->dx - set->start_size) / (set->size_cub);
 	}
 	else if (ei == 'e')
 	{
 		if (a == '-')
-			set->dy = (set->dy - (sin(set->angle)) / 20);
-		else if (a == '+')
-			set->dy = (set->dy + (sin(set->angle)) / 20);
+			set->dy = ((set->dy) * lgr);
+		//printf("size_cub = %f\n", set->size_cub);
 		res = (set->dy - set->start_size) / (set->size_cub);
 	}
 	return (res);
@@ -115,57 +114,74 @@ void	print_line(t_param *set)
 
 	int cpt;
 	float lgr;
+	float lgr_correct;
 
 	middle_point(set);
 
-	cpt = 1;
+	cpt = 0;
 
 	set->angle = set->orient_p - M_PI / 8;
 	//printf("\nPremier angle = %f\n", set->angle);
 	while (set->angle <= (set->orient_p + (M_PI / 8)))
 	{
-		set->dx = set->perso_x;
-		set->dy = set->perso_y;
-		i = (set->dx - set->start_size) / set->size_cub;
-		e = (set->dy - set->start_size) / set->size_cub;
 		lgr = 0;
-		//printf("\n\n\n----------------------------------------------------\nligne numero : %d\n",cpt);
+		set->dx = cos(set->angle);
+		set->dy = sin(set->angle);
+		i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
+		e = ((set->perso_y + ((set->dy * lgr))) - set->start_size) / set->size_cub;
+		//printf("\n\n\n----------------------------------------------------\n");
 		while (set->map[(int)e][(int)i] != '1' && set->map[(int)e][(int)i] != ' ')
 		{
-			e = incr_decr('+', 'e', set);
-			i = incr_decr('+', 'i', set);
-			//printf("Vrai e = %f | i = %f | angle = %f\n", e , i, set->angle);
-			my_mlx_pixel_put(set, set->dx, set->dy, create_color(0, 176, 0, 144));
-			//printf("%f / ", lgr);
-			lgr += 0.2;
+			lgr += speed_moove(set);
+			i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
+			e = ((set->perso_y + ((set->dy * lgr))) - set->start_size) / set->size_cub;
+			//printf("\ne = %f | i = %f\n", e, i);
+			my_mlx_pixel_put(set, i * set->size_cub + set->start_size, e * set->size_cub + set->start_size, create_color(0, 176, 0, 144));
+			cpt++;
+			//printf("lgr = %f | ", lgr);
 		}
-		//printf("lgr_mid = %f ", lgr_mid);
-		//printf("cos(lgr) = %f | lgr = %f", cos(lgr), lgr);
-		lgr = lgr * cos(set->orient_p - set->angle);
+		lgr -= speed_moove(set);
+		i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
+		e = ((set->perso_y + ((set->dy * lgr))) - set->start_size) / set->size_cub;
+		cpt++;
+		//printf("\nlgr = %f | ", lgr);
+		//printf("\ne = %f | i = %f\n", e, i);
+		while (set->map[(int)e][(int)i] != '1' && set->map[(int)e][(int)i] != ' ')
+		{
+			lgr += speed_moove(set) / 500;
+			i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
+			e = ((set->perso_y + ((set->dy * lgr))) - set->start_size) / set->size_cub;
+			my_mlx_pixel_put(set, i * set->size_cub + set->start_size, e * set->size_cub + set->start_size, create_color(0, 176, 0, 144));
+			cpt++;
+			//printf("\nlgr = %f | ", lgr);
+			//printf("\ne = %f | i = %f\n", e, i);
+			//printf("yo");
+		}
+		lgr_correct = lgr * cos(set->orient_p - set->angle);
 
 	//	printf(" lgr_af = %f\n", lgr);
 
 		//printf("\ncos(dx) = %f | sin(dy) = %f\n", cos(i), sin(e));
-		i = incr_decr('-', 'i', set);
+		lgr -= 0.2;
+		i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
 		if (set->map[(int)e][(int)i] == '1')
 		{
 			if (((set->angle > 0 && set->angle < M_PI) || set->angle < -M_PI))
-				ray_cast(set, lgr, create_color(0, 55, 23, 108)); // bleue
+				ray_cast(set, lgr_correct, create_color(0, 55, 23, 108)); // bleue
 			else
-				ray_cast(set, lgr, create_color(0, 234, 160, 45)); // orange
+				ray_cast(set, lgr_correct, create_color(0, 234, 160, 45)); // orange
 		}
 		else
 		{
 			if (((set->angle > -M_PI_2 && set->angle < M_PI_2)))
-				ray_cast(set, lgr, create_color(0, 138, 178, 50)); // vert
+				ray_cast(set, lgr_correct, create_color(0, 138, 178, 50)); // vert
 			else
-				ray_cast(set, lgr, create_color(0, 200, 40, 50)); //rouge
+				ray_cast(set, lgr_correct, create_color(0, 200, 40, 50)); //rouge
 		}
 
-		cpt++;
-		set->angle = set->angle + M_PI / 2048;
+		set->angle = set->angle + M_PI / (set->res_x * 4);
 	}
-	printf("cpt = %d", cpt);
+	printf("\ncpt = %d\n", cpt);
 	//printf("\ndernier angle = %f\n", set->angle);
 	minimap(set, -2);
 }

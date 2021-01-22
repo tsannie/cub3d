@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:32 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/21 17:04:20 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/22 09:55:24 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,10 @@ void	colision(t_param *set, int a)
 
 int	exit_win(int keycode, t_param *set)
 {
+	printf("button = [%d]\n", keycode);
 	if (set->img)
 		mlx_destroy_image(set->mlx, set->img);
-	return (0);
+	exit(0);
 }
 
 int	moove_player(int keycode, t_param *set)
@@ -147,6 +148,7 @@ int	moove_player(int keycode, t_param *set)
 	}
 	if (keycode == 53)
 		exit_win(-1, set);
+	mlx_hook(set->win, 33, 1L << 17, exit_win, set);
 	mlx_put_image_to_window(set->mlx, set->win, set->img, 0, 0);
 	return (0);
 }

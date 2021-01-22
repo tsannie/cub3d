@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:21:56 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/21 16:53:41 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/22 09:55:14 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		start_cub(t_param *set)
 	set->addr = mlx_get_data_addr(set->img, &set->bits_per_pixel,
 		&set->line_length, &set->endian);
 	minimap(set, -1);
-	mlx_hook(set->win, 33, 1L << 17, exit_win, set);
 	mlx_hook(set->win, 2, 1L << 0, moove_player, set);
 	mlx_put_image_to_window(set->mlx, set->win, set->img, 0, 0);
 	mlx_loop(set->mlx);

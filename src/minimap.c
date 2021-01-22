@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:00:35 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/20 15:29:00 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/22 11:05:41 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	init_minimap(t_param *set)
 
 void	save_pos(t_param *set, int a)
 {
-	int		size;
+	float		size;
 
-	size = set->size_cub / 3;
+	size = set->size_cub / 2;
 	set->pps_x = set->s_x + (size);
 	set->pps_y = set->s_y + (size);
 	set->ppe_x = set->e_x - (size);
@@ -46,8 +46,9 @@ void	print_player(t_param *set)
 {
 	int		*cord;
 
-	print_square(set, cord = create_coord(set->pps_x, set->pps_y,
-		set->ppe_x, set->ppe_y), create_color(0, 11, 13, 12));
+	print_square(set, cord = create_coord(set->pps_x - (set->size_cub / 3),
+		set->pps_y - (set->size_cub/ 3), set->ppe_x + (set->size_cub/ 3),
+		set->ppe_y + (set->size_cub/ 3)), create_color(0, 11, 13, 12));
 	free(cord);
 }
 

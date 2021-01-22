@@ -1,8 +1,8 @@
 R 1920 1080
-NO ./texture/nord
-SO ./texture/sud
-WE ./texture/ouest
-EA ./texture/est
+NO ./texture/nord.png
+SO ./texture/sud.png
+WE ./texture/gauche.png
+EA ./texture/droite.png
 S ./texture/sprite
 F 28,100,0
 C 88,185,200

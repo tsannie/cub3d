@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 09:46:14 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/21 16:37:36 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/22 12:08:42 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ray_cast(t_param *set, float lgr, int clr)
 	//printf("size_column = %f\nthickness = %f\ni_line = %d\n", size_column, thickness, set->i_line);
 }
 
-float	incr_decr(char a, char ei, t_param *set, float lgr)
+/*float	incr_decr(char a, char ei, t_param *set, float lgr)
 {
 	float	res;
 
@@ -99,12 +99,6 @@ float	incr_decr(char a, char ei, t_param *set, float lgr)
 		res = (set->dy - set->start_size) / (set->size_cub);
 	}
 	return (res);
-}
-
-
-/*float	correct_lgr(t_param *set, float lgr)
-{
-
 }*/
 
 void	print_line(t_param *set)
@@ -148,7 +142,7 @@ void	print_line(t_param *set)
 		//printf("\ne = %f | i = %f\n", e, i);
 		while (set->map[(int)e][(int)i] != '1' && set->map[(int)e][(int)i] != ' ')
 		{
-			lgr += speed_moove(set) / 500;
+			lgr += speed_moove(set) / 250;
 			i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
 			e = ((set->perso_y + ((set->dy * lgr))) - set->start_size) / set->size_cub;
 			my_mlx_pixel_put(set, i * set->size_cub + set->start_size, e * set->size_cub + set->start_size, create_color(0, 176, 0, 144));

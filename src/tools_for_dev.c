@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 17:21:10 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/13 12:18:43 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/25 13:06:15 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,28 @@ void	print_map(t_param *set)
 		}
 		ft_putchar_fd('\n', 1);
 		i++;
+	}
+}
+
+void	print_first_text(t_param *set)
+{
+	int pixel;
+	int y;
+	int x;
+
+	x = 1;
+	while (x < 60)
+	{
+		y = 1;
+		while (y < 60)
+		{
+			set->T_b = set->addrS[(x * set->line_lengthS) + (y * 4) + 0];
+			set->T_g = set->addrS[(x * set->line_lengthS) + (y * 4) + 1];
+			set->T_r = set->addrS[(x * set->line_lengthS) + (y * 4) + 2];
+			printf("RGB : r = %d | g = %d | b = %d\n", set->T_r, set->T_g, set->T_b);
+			my_mlx_pixel_put(set, y, x, (((set->T_r & 0xff) << 16) + ((set->T_g & 0xff) << 8) +(set->T_b & 0xff)));
+			y++;
+		}
+		x++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/23 19:11:48 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/25 16:55:24 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ typedef struct	s_param{
 	int			i_line;
 	float		dx;
 	float		dy;
+	float		i;
+	float		e;
 	float		angle;
+	float		xspe;
+
 
 	void		*img;
 	char		*addr;
@@ -77,11 +81,30 @@ typedef struct	s_param{
 	int			line_length;
 	int			endian;
 
-	void		*imgT;
-	char		*addrT;
-	int			bits_per_pixelT;
-	int			line_lengthT;
-	int			endianT;
+	void		*imgN;
+	char		*addrN;
+	int			bits_per_pixelN;
+	int			line_lengthN;
+	int			endianN;
+
+	void		*imgS;
+	char		*addrS;
+	int			bits_per_pixelS;
+	int			line_lengthS;
+	int			endianS;
+
+	void		*imgE;
+	char		*addrE;
+	int			bits_per_pixelE;
+	int			line_lengthE;
+	int			endianE;
+
+	void		*imgW;
+	char		*addrW;
+	int			bits_per_pixelW;
+	int			line_lengthW;
+	int			endianW;
+
 	int			T_r;
 	int			T_g;
 	int			T_b;
@@ -130,5 +153,9 @@ int		moove_player(int keycode, t_param *set);
 void	colision(t_param *set, int a);
 float	speed_moove(t_param *set);
 int		exit_win(int keycode, t_param *set);
+void	assign_text(t_param *set);
+void	print_first_text(t_param *set);
+float	search_wall(t_param *set);
+void 	wash_map(t_param *set);
 
 #endif

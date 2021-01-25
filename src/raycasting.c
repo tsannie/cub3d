@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 09:46:14 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/23 19:40:43 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/25 17:17:35 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,16 @@ void	print_ground(t_param *set)
 	}
 }
 
-void	ray_cast(t_param *set, float lgr, int clr)
+void	ray_cast(t_param *set, float lgr, int or)
 {
 	float	size_column;
 	float	thickness;
-	int 	*cord;
+	int		*cord;
+	float		x;
+	float		y;
+	int		i;
+	int		e;
+	float	yspe;
 
 	if (!(cord = malloc(sizeof(int) * 4)))
 		return ;
@@ -72,8 +77,50 @@ void	ray_cast(t_param *set, float lgr, int clr)
 
 
 	//printf("x1 = %d\ny1 = %d\nx2 = %d\ny2 = %d\n",cord[0], cord[1], cord[2], cord[3]);
+	/* printf("RGB\nr = %d\ng = %d\nb = %d\n\n", set->T_r, set->T_g, set->T_b); */
 
-	print_square(set, cord , clr);
+	set->xspe += (((lgr - (lgr / 10)))/1000);
+	if (set->xspe > 63)
+		set->xspe = 0;
+	yspe = 0;
+	y = cord[0];
+	while (y < cord[2])
+	{
+		x = cord[1];
+		while (x < cord[3])
+		{
+			if (or == 0)
+			{
+				set->T_r = set->addrS[(((int)yspe) * set->line_lengthS) + ((int)set->xspe * 4) + 2];
+				set->T_g = set->addrS[(((int)yspe) * set->line_lengthS) + ((int)set->xspe * 4) + 1];
+				set->T_b = set->addrS[(((int)yspe) * set->line_lengthS) + ((int)set->xspe * 4) + 0];
+			}
+			else if (or == 1)
+			{
+				set->T_r = set->addrN[(((int)yspe) * set->line_lengthN) + ((int)set->xspe * 4) + 2];
+				set->T_g = set->addrN[(((int)yspe) * set->line_lengthN) + ((int)set->xspe * 4) + 1];
+				set->T_b = set->addrN[(((int)yspe) * set->line_lengthN) + ((int)set->xspe * 4) + 0];
+			}
+			else if (or == 2)
+			{
+				set->T_r = set->addrE[(((int)yspe) * set->line_lengthE) + ((int)set->xspe * 4) + 2];
+				set->T_g = set->addrE[(((int)yspe) * set->line_lengthE) + ((int)set->xspe * 4) + 1];
+				set->T_b = set->addrE[(((int)yspe) * set->line_lengthE) + ((int)set->xspe * 4) + 0];
+			}
+			else if (or == 3)
+			{
+				set->T_r = set->addrW[(((int)yspe) * set->line_lengthW) + ((int)set->xspe * 4) + 2];
+				set->T_g = set->addrW[(((int)yspe) * set->line_lengthW) + ((int)set->xspe * 4) + 1];
+				set->T_b = set->addrW[(((int)yspe) * set->line_lengthW) + ((int)set->xspe * 4) + 0];
+			}
+			yspe += ((lgr*2 - (lgr/1.8)) / ((float)set->res_y));
+			my_mlx_pixel_put(set, y, x, (((set->T_r & 0xff) << 16) + ((set->T_g & 0xff) << 8) +(set->T_b & 0xff)));
+			x++;
+		}
+		y++;
+		printf("yspe = %f | set->xspe = %f\n", yspe, set->xspe);
+	}
+
 	free(cord);
 
 	//printf("size_column = %f\nthickness = %f\ni_line = %d\n", size_column, thickness, set->i_line);
@@ -103,8 +150,6 @@ void	ray_cast(t_param *set, float lgr, int clr)
 
 void	print_line(t_param *set)
 {
-	float i;
-	float e;
 
 	int cpt;
 	float lgr;
@@ -113,81 +158,48 @@ void	print_line(t_param *set)
 	middle_point(set);
 
 	cpt = 0;
+	set->xspe = 0;
 
 	set->angle = set->orient_p - M_PI / 8;
 	//printf("\nPremier angle = %f\n", set->angle);
 	while (set->angle <= (set->orient_p + (M_PI / 8)))
 	{
-		lgr = 0;
-		set->dx = cos(set->angle);
-		set->dy = sin(set->angle);
-		i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
-		e = ((set->perso_y + ((set->dy * lgr))) - set->start_size) / set->size_cub;
-		//printf("\n\n\n----------------------------------------------------\n");
-		while (set->map[(int)e][(int)i] != '1' && set->map[(int)e][(int)i] != ' ')
-		{
-			lgr += speed_moove(set);
-			i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
-			e = ((set->perso_y + ((set->dy * lgr))) - set->start_size) / set->size_cub;
-			//printf("\ne = %f | i = %f\n", e, i);
-			my_mlx_pixel_put(set, i * set->size_cub + set->start_size, e * set->size_cub + set->start_size, create_color(0, 176, 0, 144));
-			cpt++;
-			//printf("lgr = %f | ", lgr);
-		}
-		lgr -= speed_moove(set);
-		i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
-		e = ((set->perso_y + ((set->dy * lgr))) - set->start_size) / set->size_cub;
-		cpt++;
-		//printf("\nlgr = %f | ", lgr);
-		//printf("\ne = %f | i = %f\n", e, i);
-		while (set->map[(int)e][(int)i] != '1' && set->map[(int)e][(int)i] != ' ')
-		{
-			lgr += speed_moove(set) / 250;
-			i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
-			e = ((set->perso_y + ((set->dy * lgr))) - set->start_size) / set->size_cub;
-			my_mlx_pixel_put(set, i * set->size_cub + set->start_size, e * set->size_cub + set->start_size, create_color(0, 176, 0, 144));
-			cpt++;
-			//printf("\nlgr = %f | ", lgr);
-			//printf("\ne = %f | i = %f\n", e, i);
-			//printf("yo");
-		}
+		lgr = search_wall(set);
 		lgr_correct = lgr * cos(set->orient_p - set->angle);
 
-	//	printf(" lgr_af = %f\n", lgr);
+		//printf(" lgr_af = %f\n", lgr);
 
 		//printf("\ncos(dx) = %f | sin(dy) = %f\n", cos(i), sin(e));
 		lgr -= 0.2;
-		i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
-		if (set->map[(int)e][(int)i] == '1')
+		set->i = ((set->perso_x + ((set->dx * lgr))) - set->start_size) / set->size_cub;
+		//printf("After:\ne = %f | i = %f | set->map[e][i] = |%c|\nlgr = %f\n",set->e,set->i, set->map[(int)set->e][(int)set->i], lgr);
+		if (set->map[(int)set->e][(int)set->i] == '4')
 		{
 			if (((set->angle > 0 && set->angle < M_PI) || set->angle < -M_PI))
 			{
-				assign_text(set, 0);
-				ray_cast(set, lgr_correct, create_color(0, 55, 23, 108)); // bleue SUD
+				ray_cast(set, lgr_correct, 0); // bleue SUD
 			}
 			else
 			{
-				assign_text(set, 1);
-				ray_cast(set, lgr_correct, create_color(0, 234, 160, 45)); // orange NORD
+				ray_cast(set, lgr_correct, 1); // orange NORD
 			}
 		}
 		else
 		{
 			if (((set->angle > -M_PI_2 && set->angle < M_PI_2)))
 			{
-				assign_text(set, 2);
-				ray_cast(set, lgr_correct, create_color(0, 138, 178, 50)); // vert EST
+				ray_cast(set, lgr_correct, 2); // vert EST
 			}
 			else
 			{
-				assign_text(set, 3);
-				ray_cast(set, lgr_correct, create_color(0, 200, 40, 50)); //rouge OUEST
+				ray_cast(set, lgr_correct, 3); //rouge OUEST
 			}
 		}
 
 		set->angle = set->angle + M_PI / (set->res_x * 4);
 	}
 	printf("\ncpt = %d\n", cpt);
+	wash_map(set);
 	//printf("\ndernier angle = %f\n", set->angle);
-	//minimap(set, -2);
+	minimap(set, -2);
 }

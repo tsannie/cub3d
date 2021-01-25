@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 09:46:14 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/22 12:08:42 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/23 19:40:43 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,21 +161,33 @@ void	print_line(t_param *set)
 		if (set->map[(int)e][(int)i] == '1')
 		{
 			if (((set->angle > 0 && set->angle < M_PI) || set->angle < -M_PI))
-				ray_cast(set, lgr_correct, create_color(0, 55, 23, 108)); // bleue
+			{
+				assign_text(set, 0);
+				ray_cast(set, lgr_correct, create_color(0, 55, 23, 108)); // bleue SUD
+			}
 			else
-				ray_cast(set, lgr_correct, create_color(0, 234, 160, 45)); // orange
+			{
+				assign_text(set, 1);
+				ray_cast(set, lgr_correct, create_color(0, 234, 160, 45)); // orange NORD
+			}
 		}
 		else
 		{
 			if (((set->angle > -M_PI_2 && set->angle < M_PI_2)))
-				ray_cast(set, lgr_correct, create_color(0, 138, 178, 50)); // vert
+			{
+				assign_text(set, 2);
+				ray_cast(set, lgr_correct, create_color(0, 138, 178, 50)); // vert EST
+			}
 			else
-				ray_cast(set, lgr_correct, create_color(0, 200, 40, 50)); //rouge
+			{
+				assign_text(set, 3);
+				ray_cast(set, lgr_correct, create_color(0, 200, 40, 50)); //rouge OUEST
+			}
 		}
 
 		set->angle = set->angle + M_PI / (set->res_x * 4);
 	}
 	printf("\ncpt = %d\n", cpt);
 	//printf("\ndernier angle = %f\n", set->angle);
-	minimap(set, -2);
+	//minimap(set, -2);
 }

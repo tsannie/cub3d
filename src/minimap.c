@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:00:35 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/22 11:05:41 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/23 18:23:27 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	print_player(t_param *set)
 {
 	int		*cord;
 
-	print_square(set, cord = create_coord(set->pps_x - (set->size_cub / 3),
-		set->pps_y - (set->size_cub/ 3), set->ppe_x + (set->size_cub/ 3),
-		set->ppe_y + (set->size_cub/ 3)), create_color(0, 11, 13, 12));
+	print_square(set, cord = create_coord(set->pps_x - (set->size_cub / 4),
+		set->pps_y - (set->size_cub/ 4), set->ppe_x + (set->size_cub/ 4),
+		set->ppe_y + (set->size_cub/ 4)), create_color(0, 11, 13, 12));
 	free(cord);
 }
 

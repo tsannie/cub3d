@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/21 17:04:55 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/23 19:11:48 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,15 @@ typedef struct	s_param{
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+
+	void		*imgT;
+	char		*addrT;
+	int			bits_per_pixelT;
+	int			line_lengthT;
+	int			endianT;
+	int			T_r;
+	int			T_g;
+	int			T_b;
 }				t_param;
 
 int		param_trim(char *str, t_param *set);

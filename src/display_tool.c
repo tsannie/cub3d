@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:01:36 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/21 16:13:47 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/23 19:18:20 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ float	exter_point(t_param *set, float value, int a)
 	return (0);
 }
 
-void	print_square(t_param *set, int *cord, int color)
+void	 print_square(t_param *set, int *cord, int color)
 {
 	int i;
 	int e;
@@ -103,4 +103,17 @@ void	set_orient(t_param *set)
 		set->orient_p = 0;
 	if (set->pos == 'W')
 		set->orient_p = M_PI;
+}
+
+void	assign_text(t_param *set, int a)
+{
+	if (a == 0)
+		set->imgT = mlx_xpm_file_to_image(set->mlx, set->text_so, 150, 150);
+	if (a == 1)
+		set->imgT = mlx_xpm_file_to_image(set->mlx, set->text_no, 150, 150);
+	if (a == 2)
+		set->imgT = mlx_xpm_file_to_image(set->mlx, set->text_ea, 150, 150);
+	if (a == 3)
+		set->imgT = mlx_xpm_file_to_image(set->mlx, set->text_we, 150, 150);
+	set->addrT = mlx_get_data_addr(set->imgT, &set->bits_per_pixelT, &set->line_lengthT, &set->endianT);
 }

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/25 16:55:24 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/26 16:30:38 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ typedef struct	s_param{
 	float		e;
 	float		angle;
 	float		xspe;
+	float		pre_wall;
+
+	int cpt;
 
 
 	void		*img;

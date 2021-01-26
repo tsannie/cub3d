@@ -6,7 +6,7 @@
 #    By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 11:00:45 by tsannie           #+#    #+#              #
-#    Updated: 2021/01/22 12:18:24 by tsannie          ###   ########.fr        #
+#    Updated: 2021/01/26 08:43:52 by tsannie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ NAMELIB		= ${BLUE}${BOLD}Libft${END}
 
 SRC			= main.c trim1.c trim2.c error_msg.c tools_for_dev.c \
 trim_texture.c check_map1.c check_map2.c start_cub.c minimap.c \
-display_tool.c moove_player.c raycasting.c
+display_tool.c moove_player.c raycasting1.c raycasting2.c
 
 SRC_BONUS 	= \
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycasting1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 09:46:14 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/25 17:17:35 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/26 15:37:44 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,32 @@ void	ray_cast(t_param *set, float lgr, int or)
 	set->i_line++;
 
 	cord[0] = thickness * (float)set->i_line;
-	cord[1] = (set->res_y / 2) - (size_column / 2);
-	cord[2] = thickness * (set->i_line + 1);
-	cord[3] = (set->res_y / 2) + (size_column / 2);
+	cord[1] = ((float)set->res_y / 2) - (size_column / 2);
+	cord[2] = thickness * ((float)set->i_line + 1);
+	cord[3] = ((float)set->res_y / 2) + (size_column / 2);
 
 	if (cord[0] > set->res_x)
 		cord[0] = set->res_x;
-	if (cord[1] <= 0)
-		cord[1] = 0;
+/* 	if (cord[1] <= 0)
+		cord[1] = 0; */
 	if (cord[2] > set->res_x)
 		cord[2] = set->res_x;
 	if (cord[3] > set->res_y)
 		cord[3] = set->res_y;
 
 
-	//printf("x1 = %d\ny1 = %d\nx2 = %d\ny2 = %d\n",cord[0], cord[1], cord[2], cord[3]);
+	//printf("x1 = %d | y1 = %d | x2 = %d | y2 = %d\n\n",cord[0], cord[1], cord[2], cord[3]);
 	/* printf("RGB\nr = %d\ng = %d\nb = %d\n\n", set->T_r, set->T_g, set->T_b); */
 
-	set->xspe += (((lgr - (lgr / 10)))/1000);
-	if (set->xspe > 63)
-		set->xspe = 0;
 	yspe = 0;
-	y = cord[0];
-	while (y < cord[2])
+	set->xspe += (lgr / (float)(set->res_y * (set->size_cub) / 32));
+	if (set->xspe > 64)
+		set->xspe = 0;
+	x = cord[0];
+	while (x < cord[2])
 	{
-		x = cord[1];
-		while (x < cord[3])
+		y = cord[1];
+		while (y < cord[3])
 		{
 			if (or == 0)
 			{
@@ -113,12 +113,16 @@ void	ray_cast(t_param *set, float lgr, int or)
 				set->T_g = set->addrW[(((int)yspe) * set->line_lengthW) + ((int)set->xspe * 4) + 1];
 				set->T_b = set->addrW[(((int)yspe) * set->line_lengthW) + ((int)set->xspe * 4) + 0];
 			}
-			yspe += ((lgr*2 - (lgr/1.8)) / ((float)set->res_y));
-			my_mlx_pixel_put(set, y, x, (((set->T_r & 0xff) << 16) + ((set->T_g & 0xff) << 8) +(set->T_b & 0xff)));
-			x++;
+			yspe += (lgr / (float)(set->res_y * (set->size_cub) / 32));
+			if (yspe > 64)
+				yspe = 64;
+			//if (((x < set->res_x) && (x > 0)))
+			if (((y <= set->res_y) && (y >= 0)) && ((x <= set->res_x) && (x >= 0)))
+				my_mlx_pixel_put(set, x, y, (((set->T_r & 0xff) << 16) + ((set->T_g & 0xff) << 8) +(set->T_b & 0xff)));
+			y++;
 		}
-		y++;
-		printf("yspe = %f | set->xspe = %f\n", yspe, set->xspe);
+		x++;
+		//printf("yspe = %f | set->xspe = %f\n", yspe, set->xspe);
 	}
 
 	free(cord);
@@ -126,38 +130,15 @@ void	ray_cast(t_param *set, float lgr, int or)
 	//printf("size_column = %f\nthickness = %f\ni_line = %d\n", size_column, thickness, set->i_line);
 }
 
-/*float	incr_decr(char a, char ei, t_param *set, float lgr)
-{
-	float	res;
-
-	if (ei == 'i')
-	{
-		if (a == '-')
-			set->dx = ((set->dx) * lgr);
-		else if (a == '+')
-			set->dx = ((set->dx) + (cos(set->angle) * lgr));
-		res = (set->dx - set->start_size) / (set->size_cub);
-	}
-	else if (ei == 'e')
-	{
-		if (a == '-')
-			set->dy = ((set->dy) * lgr);
-		//printf("size_cub = %f\n", set->size_cub);
-		res = (set->dy - set->start_size) / (set->size_cub);
-	}
-	return (res);
-}*/
-
 void	print_line(t_param *set)
 {
 
-	int cpt;
 	float lgr;
 	float lgr_correct;
 
 	middle_point(set);
 
-	cpt = 0;
+	set->cpt = 0;
 	set->xspe = 0;
 
 	set->angle = set->orient_p - M_PI / 8;
@@ -198,7 +179,7 @@ void	print_line(t_param *set)
 
 		set->angle = set->angle + M_PI / (set->res_x * 4);
 	}
-	printf("\ncpt = %d\n", cpt);
+	printf("\ncpt = %d\n", set->cpt);
 	wash_map(set);
 	//printf("\ndernier angle = %f\n", set->angle);
 	minimap(set, -2);

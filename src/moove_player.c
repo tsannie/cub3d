@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:32 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/22 09:55:24 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/26 11:26:43 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	colision(t_param *set, int a)
 		if (set->map[i][e] == '1' || set->map[g][e] == '1' || set->map[g][p] == '1' || set->map[i][p] == '1'
 			|| set->map[i][e] == '2' || set->map[g][e] == '2' || set->map[g][p] == '2' || set->map[i][p] == '2')
 		{
-			set->pps_x = set->pps_x - (sin(set->orient_p) * speed_moove(set));
-			set->ppe_x = set->ppe_x - (sin(set->orient_p) * speed_moove(set));
-			set->pps_y = set->pps_y + (cos(set->orient_p) * speed_moove(set));
-			set->ppe_y = set->ppe_y + (cos(set->orient_p) * speed_moove(set));
+			set->pps_x = set->pps_x - (sin(set->orient_p) * (speed_moove(set) * 0.8));
+			set->ppe_x = set->ppe_x - (sin(set->orient_p) * (speed_moove(set) * 0.8));
+			set->pps_y = set->pps_y + (cos(set->orient_p) * (speed_moove(set) * 0.8));
+			set->ppe_y = set->ppe_y + (cos(set->orient_p) * (speed_moove(set) * 0.8));
 		}
 	}
 	if (a == 4)
@@ -75,10 +75,10 @@ void	colision(t_param *set, int a)
 		if (set->map[i][e] == '1' || set->map[g][e] == '1' || set->map[g][p] == '1' || set->map[i][p] == '1'
 			|| set->map[i][e] == '2' || set->map[g][e] == '2' || set->map[g][p] == '2' || set->map[i][p] == '2')
 		{
-			set->pps_x = set->pps_x + (sin(set->orient_p) * speed_moove(set));
-			set->ppe_x = set->ppe_x + (sin(set->orient_p) * speed_moove(set));
-			set->pps_y = set->pps_y - (cos(set->orient_p) * speed_moove(set));
-			set->ppe_y = set->ppe_y - (cos(set->orient_p) * speed_moove(set));
+			set->pps_x = set->pps_x + (sin(set->orient_p) * (speed_moove(set) * 0.8));
+			set->ppe_x = set->ppe_x + (sin(set->orient_p) * (speed_moove(set) * 0.8));
+			set->pps_y = set->pps_y - (cos(set->orient_p) * (speed_moove(set) * 0.8));
+			set->ppe_y = set->ppe_y - (cos(set->orient_p) * (speed_moove(set) * 0.8));
 		}
 	}
 	print_square(set, cord = create_coord(set->pps_x, set->pps_y,
@@ -116,34 +116,34 @@ int	moove_player(int keycode, t_param *set)
 	}
 	if (keycode == 0)
 	{
-		set->pps_x = set->pps_x + (sin(set->orient_p) * speed_moove(set));
-		set->ppe_x = set->ppe_x + (sin(set->orient_p) * speed_moove(set));
-		set->pps_y = set->pps_y - (cos(set->orient_p) * speed_moove(set));
-		set->ppe_y = set->ppe_y - (cos(set->orient_p) * speed_moove(set));
+		set->pps_x = set->pps_x + (sin(set->orient_p) * (speed_moove(set) * 0.8));
+		set->ppe_x = set->ppe_x + (sin(set->orient_p) * (speed_moove(set) * 0.8));
+		set->pps_y = set->pps_y - (cos(set->orient_p) * (speed_moove(set) * 0.8));
+		set->ppe_y = set->ppe_y - (cos(set->orient_p) * (speed_moove(set) * 0.8));
 		minimap(set, 3);
 	}
 	if (keycode == 2)
 	{
-		set->pps_x = set->pps_x - (sin(set->orient_p) * speed_moove(set));
-		set->ppe_x = set->ppe_x - (sin(set->orient_p) * speed_moove(set));
-		set->pps_y = set->pps_y + (cos(set->orient_p) * speed_moove(set));
-		set->ppe_y = set->ppe_y + (cos(set->orient_p) * speed_moove(set));
+		set->pps_x = set->pps_x - (sin(set->orient_p) * (speed_moove(set) * 0.8));
+		set->ppe_x = set->ppe_x - (sin(set->orient_p) * (speed_moove(set) * 0.8));
+		set->pps_y = set->pps_y + (cos(set->orient_p) * (speed_moove(set) * 0.8));
+		set->ppe_y = set->ppe_y + (cos(set->orient_p) * (speed_moove(set) * 0.8));
 		minimap(set, 4);
 	}
 	if (keycode == 123)
 	{
 		if (set->orient_p <= -M_PI)
-			set->orient_p = M_PI - M_PI / 50;
+			set->orient_p = M_PI - M_PI / 24;
 		else
-			set->orient_p = set->orient_p - M_PI / 50;
+			set->orient_p = set->orient_p - M_PI / 24;
 		minimap(set, 0);
 	}
 	if (keycode == 124)
 	{
 		if (set->orient_p >= M_PI)
-			set->orient_p = -M_PI + M_PI / 50;
+			set->orient_p = -M_PI + M_PI / 24;
 		else
-			set->orient_p = set->orient_p + M_PI / 50;
+			set->orient_p = set->orient_p + M_PI / 24;
 		minimap(set, 0);
 	}
 	if (keycode == 53)

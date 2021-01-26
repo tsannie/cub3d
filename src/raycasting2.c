@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 08:43:10 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/26 17:05:01 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/26 21:45:29 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		pre_wall(t_param *set, float angle, float dx, float dy)
 	//printf("Avant je suis sur '%c'(%d)(%d)\n", set->map[(int)e][(int)i], (int)e, (int)i);
 	while (set->map[(int)e][(int)i] != '4' && set->map[(int)e][(int)i] != '5' && set->map[(int)e][(int)i] != '1' && set->map[(int)e][(int)i] != ' ' )
 	{
-		printf("je suis sur '%c'(%d)(%d)\n", set->map[(int)e][(int)i], (int)e, (int)i);
+		//printf("je suis sur '%c'(%d)(%d)\n", set->map[(int)e][(int)i], (int)e, (int)i);
 		set->pre_wall += speed_moove(set);
 		i = ((set->perso_x + ((dx * set->pre_wall))) - set->start_size) / set->size_cub;
 		e = ((set->perso_y + ((dy * set->pre_wall))) - set->start_size) / set->size_cub;
@@ -47,24 +47,24 @@ void	align_text(t_param *set)
 	float f_dx;
 	float f_dy;
 
-	printf("entre\n");
+	//printf("entre\n");
 	f_ang = set->angle - M_PI / (set->res_x * 4);
 	f_dx = cos(f_ang);
 	f_dy = sin(f_ang);
 	set->pre_wall = 0;
-	printf("b = %f\n", set->xspe);
+	//printf("b = %f\n", set->xspe);
 	while ((pre_wall(set, f_ang, f_dx, f_dy)) == 1)
 	{
 		set->xspe += (set->pre_wall / (float)(set->res_y * (set->size_cub) / 32));
 		if (set->xspe > 64)
 			set->xspe = 0;
-		printf("%f\n", set->xspe);
+		//printf("%f\n", set->xspe);
 		f_ang = f_ang - M_PI / (set->res_x * 4);
 		f_dx = cos(f_ang);
 		f_dy = sin(f_ang);
 		set->pre_wall = 0;
 	}
-	set->xspe += (set->pre_wall / (float)(set->res_y * (set->size_cub) / 32));
+	//set->xspe += (set->pre_wall / (float)(set->res_y * (set->size_cub) / 32));
 }
 
 float	search_wall(t_param *set)

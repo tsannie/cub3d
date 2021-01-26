@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 13:57:08 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/22 12:07:41 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/26 21:33:42 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ int		trim_reso(char *line, int *n, t_param *set)
 		i++;
 	}
 	set->res_y = ft_atoi(&line[i]);
-	if (set->res_x < 1 || set->res_y < 1)
-		return (error_reso());
+	if (set->res_x < 200 || set->res_y < 200)
+		return (error_reso(1));
+	if (set->res_x < set->res_y)
+		return (error_reso(2));
+	set->res_x = set->res_x > 1920 ? 1920 : set->res_x;
+	set->res_y = set->res_y > 1080 ? 1080 : set->res_y;
 	(*n)++;
 	return (1);
 }

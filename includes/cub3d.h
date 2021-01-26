@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/26 16:30:38 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/26 21:15:22 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int		trim_texts(char *line, int *n, t_param *set);
 int		check_open(char *str);
 int		trim_map(char *line, t_param *set);
 
-int		error_reso(void);
+int		error_reso(char a);
 int		error_param(void);
 int		error_text(char *str, char *line);
 int		error_color(int a);

@@ -6,16 +6,21 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:38:30 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/12 17:42:57 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/26 21:20:39 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int		error_reso(void)
+int		error_reso(char a)
 {
-	ft_putstr_fd("Error\nLa résolution enregistré n'est pas correcte.\n"
-	"Merci de relancer avec un format correct \nExemple: \"R 1920 1080\"\n", 1);
+	ft_putstr_fd("Error\nLa résolution enregistré n'est pas correcte.\n", 1);
+		if (a == 1)
+			ft_putstr_fd("Attention il faut minimum 200 de resolution pour"
+		"une bonne exécution du jeu.\n", 1);
+		if (a == 2)
+			ft_putstr_fd("Attention il faut aue l'axe x soit au moins"
+				"egal à l'axe y\n", 1);
 	return (-1);
 }
 

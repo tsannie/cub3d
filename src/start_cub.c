@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:21:56 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/25 11:19:17 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/27 17:35:49 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int		start_cub(t_param *set)
 {
 	set_orient(set);
 	set->mlx = mlx_init();
-	assign_text(set);
+
+	if (assign_text(set) == -1)
+		return(-1);
 	set->win = mlx_new_window(set->mlx, set->res_x, set->res_y, "Cub3D !");
 	set->img = mlx_new_image(set->mlx, set->res_x, set->res_y);
 	set->addr = mlx_get_data_addr(set->img, &set->bits_per_pixel,

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:01:36 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/26 09:05:17 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/27 16:58:10 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ float		speed_moove(t_param *set)
 {
 	float speed;
 
-	speed = set->size_cub / 4;
+	speed = set->size_cub / 3;
 	return (speed);
 }
 
@@ -67,7 +67,7 @@ float	exter_point(t_param *set, float value, int a)
 	if (a == 1)
 		return (value - e);
 	if (a == 2)
-		return (value+ e);
+		return (value + e);
 	if (a == 3)
 		return (value - e);
 	if (a == 4)
@@ -75,7 +75,7 @@ float	exter_point(t_param *set, float value, int a)
 	return (0);
 }
 
-void	 print_square(t_param *set, int *cord, int color)
+void	print_square(t_param *set, int *cord, int color)
 {
 	int i;
 	int e;
@@ -98,31 +98,9 @@ void	set_orient(t_param *set)
 	if (set->pos == 'S')
 		set->orient_p = M_PI_2;
 	if (set->pos == 'N')
-		set->orient_p = -(M_PI/2);
+		set->orient_p = -(M_PI / 2);
 	if (set->pos == 'E')
 		set->orient_p = 0;
 	if (set->pos == 'W')
 		set->orient_p = M_PI;
-}
-
-void	assign_text(t_param *set)
-{
-	int i;
-
-	i = 1;
-	if ((set->imgS = mlx_xpm_file_to_image(set->mlx, set->text_so, &i, &i)) == NULL)
-		printf("MAL INIT\n");
-	set->addrS = mlx_get_data_addr(set->imgS, &set->bits_per_pixelS, &set->line_lengthS, &set->endianS);
-
-	if ((set->imgN = mlx_xpm_file_to_image(set->mlx, set->text_no, &i, &i)) == NULL)
-		printf("MAL INIT\n");
-	set->addrN = mlx_get_data_addr(set->imgN, &set->bits_per_pixelN, &set->line_lengthN, &set->endianN);
-
-	if ((set->imgE = mlx_xpm_file_to_image(set->mlx, set->text_ea, &i, &i)) == NULL)
-		printf("MAL INIT\n");
-	set->addrE = mlx_get_data_addr(set->imgE, &set->bits_per_pixelE, &set->line_lengthE, &set->endianE);
-
-	if ((set->imgW = mlx_xpm_file_to_image(set->mlx, set->text_we, &i, &i)) == NULL)
-		printf("MAL INIT\n");
-	set->addrW = mlx_get_data_addr(set->imgW, &set->bits_per_pixelW, &set->line_lengthW, &set->endianW);
 }

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:00:35 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/23 18:23:27 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/27 08:53:17 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	save_pos(t_param *set, int a)
 {
 	float		size;
 
-	size = set->size_cub / 2;
+	size = set->size_cub / 3;
 	set->pps_x = set->s_x + (size);
 	set->pps_y = set->s_y + (size);
 	set->ppe_x = set->e_x - (size);

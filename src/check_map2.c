@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:05:49 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/21 16:02:15 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/27 17:33:34 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,53 @@ int		logic_map(t_param *set)
 		}
 		i++;
 	}
+	return (0);
+}
+
+int		assign_text2(t_param *set)
+{
+	int	i;
+
+	i = 1;
+	if ((set->imgW = mlx_xpm_file_to_image(set->mlx, set->text_we,
+		&i, &i)) == NULL)
+		if (error_text("la texture OUEST\n", set->text_we) == -1)
+			return (-1);
+	set->addrW = mlx_get_data_addr(set->imgW, &set->bits_per_pixelW,
+		&set->line_lengthW, &set->endianW);
+	if ((set->imgSp = mlx_xpm_file_to_image(set->mlx, set->text_s,
+		&i, &i)) == NULL)
+		if (error_text("la texture du SPRITE\n", set->text_s) == -1)
+			return (-1);
+	set->addrSp = mlx_get_data_addr(set->imgSp, &set->bits_per_pixelSp,
+		&set->line_lengthSp, &set->endianSp);
+	return (0);
+}
+
+int		assign_text(t_param *set)
+{
+	int	i;
+
+	i = 1;
+	if ((set->imgS = mlx_xpm_file_to_image(set->mlx, set->text_so,
+		&i, &i)) == NULL)
+		if (error_text("la texture SUD\n", set->text_so) == -1)
+			return (-1);
+	set->addrS = mlx_get_data_addr(set->imgS, &set->bits_per_pixelS,
+		&set->line_lengthS, &set->endianS);
+	if ((set->imgN = mlx_xpm_file_to_image(set->mlx, set->text_no,
+		&i, &i)) == NULL)
+		if (error_text("la texture NORD\n", set->text_no) == -1)
+			return (-1);
+	set->addrN = mlx_get_data_addr(set->imgN, &set->bits_per_pixelN,
+		&set->line_lengthN, &set->endianN);
+	if ((set->imgE = mlx_xpm_file_to_image(set->mlx, set->text_ea,
+		&i, &i)) == NULL)
+		if (error_text("la texture EAST\n", set->text_ea) == -1)
+			return (-1);
+	set->addrE = mlx_get_data_addr(set->imgE, &set->bits_per_pixelE,
+		&set->line_lengthE, &set->endianE);
+	if (assign_text2(set) == -1)
+		return (-1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:38:30 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/26 21:20:39 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/27 17:28:57 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int		error_reso(char a)
 {
 	ft_putstr_fd("Error\nLa résolution enregistré n'est pas correcte.\n", 1);
-		if (a == 1)
-			ft_putstr_fd("Attention il faut minimum 200 de resolution pour"
+	if (a == 1)
+		ft_putstr_fd("Attention il faut minimum 200 de resolution pour"
 		"une bonne exécution du jeu.\n", 1);
-		if (a == 2)
-			ft_putstr_fd("Attention il faut aue l'axe x soit au moins"
-				"egal à l'axe y\n", 1);
+	if (a == 2)
+		ft_putstr_fd("Attention il faut aue l'axe x soit au moins"
+			"egal à l'axe y\n", 1);
 	return (-1);
 }
 

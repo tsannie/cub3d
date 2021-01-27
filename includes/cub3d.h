@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/26 21:15:22 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/27 17:04:41 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,23 @@ typedef struct	s_param{
 	int			line_lengthW;
 	int			endianW;
 
+	void		*imgSp;
+	char		*addrSp;
+	int			bits_per_pixelSp;
+	int			line_lengthSp;
+	int			endianSp;
+
+
 	int			T_r;
 	int			T_g;
 	int			T_b;
+
+	float		lgr_spr;
+	int			sprite;
+	float		xspe_spr;
+	float 		htr;
+	int			spr_pres;
+
 }				t_param;
 
 int		param_trim(char *str, t_param *set);
@@ -156,9 +170,10 @@ int		moove_player(int keycode, t_param *set);
 void	colision(t_param *set, int a);
 float	speed_moove(t_param *set);
 int		exit_win(int keycode, t_param *set);
-void	assign_text(t_param *set);
+int		assign_text(t_param *set);
 void	print_first_text(t_param *set);
 float	search_wall(t_param *set);
 void 	wash_map(t_param *set);
+void	re_alloc(t_param *set);
 
 #endif

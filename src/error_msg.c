@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:38:30 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/27 17:28:57 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 15:23:12 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,15 @@ int		error_text(char *str, char *line)
 	return (-1);
 }
 
-int		error_param(void)
+int		error_param(char a)
 {
-	ft_putstr_fd("Error\nIl y a des problèmes sur les paramètres de"
-	" config.\n", 1);
+	ft_putstr_fd("Error\n");
+	if (a == 1)
+		ft_putstr_fd("Il y a des problèmes sur les paramètres de"
+		" config.\n", 1);
+	if (a == 2)
+		ft_putstr_fd("Il y a un problème sur une alloction"
+		"de mémoire.\n", 1);
 	return (-1);
 }
 

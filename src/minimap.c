@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:00:35 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/27 08:53:17 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 12:18:19 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,44 @@ void	init_minimap(t_param *set)
 	set->i_line = -1;
 }
 
-void	save_pos(t_param *set, int a)
-{
-	float		size;
-
-	size = set->size_cub / 3;
-	set->pps_x = set->s_x + (size);
-	set->pps_y = set->s_y + (size);
-	set->ppe_x = set->e_x - (size);
-	set->ppe_y = set->e_y - (size);
-}
-
 void	print_player(t_param *set)
 {
 	int		*cord;
 
-	print_square(set, cord = create_coord(set->pps_x - (set->size_cub / 4),
-		set->pps_y - (set->size_cub/ 4), set->ppe_x + (set->size_cub/ 4),
-		set->ppe_y + (set->size_cub/ 4)), create_color(0, 11, 13, 12));
+	print_square(set, cord = create_coord(set->pps_x - (set->size_cub / 6),
+		set->pps_y - (set->size_cub / 6), set->ppe_x + (set->size_cub / 6),
+		set->ppe_y + (set->size_cub / 6)), create_color(102, 102, 255));
 	free(cord);
+}
+
+void	color_map(t_param *set, int a, int i, int e)
+{
+	int *res;
+
+	res = NULL;
+	if (set->map[i][e] == '1')
+		print_square(set, res = create_coord(set->s_x, set->s_y,
+			set->e_x, set->e_y), create_color(204, 0, 0));
+	if (set->map[i][e] == '0')
+		print_square(set, res = create_coord(set->s_x, set->s_y,
+			set->e_x, set->e_y), create_color(0, 102, 0));
+	if (set->map[i][e] == '2')
+		print_square(set, res = create_coord(set->s_x, set->s_y,
+			set->e_x, set->e_y), create_color(168, 26, 225));
+	if (set->map[i][e] == set->pos)
+	{
+		print_square(set, res = create_coord(set->s_x, set->s_y,
+			set->e_x, set->e_y), create_color(206, 188, 214));
+		if (a == -1)
+			save_pos(set);
+	}
+	set->s_x = set->s_x + set->size_cub;
+	set->e_x = set->e_x + set->size_cub;
+	free(res);
 }
 
 void	map_in_minimap(t_param *set, int a)
 {
-	int		*cord;
 	int		i;
 	int		e;
 
@@ -66,50 +80,30 @@ void	map_in_minimap(t_param *set, int a)
 		e = 0;
 		while (set->map[i][e])
 		{
-			if (set->map[i][e] == '1')
-				print_square(set, cord = create_coord(set->s_x, set->s_y,
-					set->e_x, set->e_y), create_color(0, 225, 159, 26));
-			if (set->map[i][e] == '0')
-				print_square(set, cord = create_coord(set->s_x, set->s_y,
-					set->e_x, set->e_y), create_color(0, 225, 26, 65));
-			if (set->map[i][e] == '2')
-				print_square(set, cord = create_coord(set->s_x, set->s_y,
-					set->e_x, set->e_y), create_color(0, 168, 26, 225));
-			if (set->map[i][e] == set->pos)
-			{
-				print_square(set, cord = create_coord(set->s_x, set->s_y,
-					set->e_x, set->e_y), create_color(0, 206, 188, 214));
-				if (a == -1)
-					save_pos(set, a);
-			}
+			color_map(set, a, i, e);
 			e++;
-			set->s_x = set->s_x + set->size_cub;
-			set->e_x = set->e_x + set->size_cub;
 		}
 		set->s_y = set->s_y + set->size_cub;
 		set->e_y = set->s_y + set->size_cub;
 		i++;
 	}
 	if (a <= 0)
-	print_player(set);
+		print_player(set);
 	if (a > 0)
 		colision(set, a);
 	middle_point(set);
-	free(cord);
 }
 
-void	minimap(t_param *set, int a)
+int		minimap(t_param *set, int a)
 {
-	int			*cord;
-
-	//printf("regen map a = |%d| [...]\n", a);
 	init_minimap(set);
 	if (a != -2)
 		print_ground(set);
-	//print_square(set, cord = create_coord(set->start_size, set->start_size,
-	//	set->end_size, set->end_size), create_color(0, 255, 255, 255));
 	map_in_minimap(set, a);
 	if (a != -2)
-		print_line(set);
-	//free(cord);
+	{
+		if (print_line(set) == -1)
+			return (-1);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/27 17:04:41 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 15:22:03 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ typedef struct	s_param{
 	float		e;
 	float		angle;
 	float		xspe;
+	float		yspe;
 	float		pre_wall;
-
-	int cpt;
+	float		lgr;
 
 
 	void		*img;
@@ -142,14 +142,14 @@ int		check_open(char *str);
 int		trim_map(char *line, t_param *set);
 
 int		error_reso(char a);
-int		error_param(void);
+int		error_param(char a);
 int		error_text(char *str, char *line);
 int		error_color(int a);
 int		error_map(int a);
 
 void	print_struct(t_param *set);
 void	print_map(t_param *set);
-void	print_line(t_param *set);
+int		print_line(t_param *set);
 void	print_ground(t_param *set);
 
 int		check_map(t_param *set);
@@ -160,20 +160,24 @@ int		start_cub(t_param *set);
 float	exter_point(t_param *set, float value, int a);
 void	set_orient(t_param *set);
 void	middle_point(t_param *set);
-int		create_color(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_param *set, int x, int y, int color);
 int		*create_coord(int x_start, int y_start, int x_end, int y_end);
 void	print_square(t_param *set, int *cord, int color);
-void	minimap(t_param *set, int a);
+int		minimap(t_param *set, int a);
 void	map_in_minimap(t_param *set, int a);
 int		moove_player(int keycode, t_param *set);
 void	colision(t_param *set, int a);
 float	speed_moove(t_param *set);
 int		exit_win(int keycode, t_param *set);
 int		assign_text(t_param *set);
-void	print_first_text(t_param *set);
 float	search_wall(t_param *set);
 void 	wash_map(t_param *set);
 void	re_alloc(t_param *set);
+void	save_pos(t_param *set);
+void	align_text(t_param *set);
+void	pres_sprite(t_param *set);
+
+int		create_color(int r, int g, int b);
+int		print_spite(t_param *set);
 
 #endif

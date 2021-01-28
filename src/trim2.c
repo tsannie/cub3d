@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:14:47 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/18 16:43:39 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 15:22:40 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		next2_gnl(char *str, int *n, t_param *set, int i)
 	if (*n == 8)
 		return (trim_map(str, set));
 	if (str[i] != ' ')
-		return (error_param());
+		return (error_param(1));
 	return (-2);
 }
 

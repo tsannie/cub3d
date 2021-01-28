@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_tool.c                                     :+:      :+:    :+:   */
+/*   display_tool1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:01:36 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/27 16:58:10 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 12:13:10 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-float		speed_moove(t_param *set)
-{
-	float speed;
-
-	speed = set->size_cub / 3;
-	return (speed);
-}
-
-int		create_color(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-void	my_mlx_pixel_put(t_param *set, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = set->addr + (y * set->line_length + x * (set->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
 
 int		*create_coord(int x_start, int y_start, int x_end, int y_end)
 {

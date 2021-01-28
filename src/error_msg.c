@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:38:30 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 15:23:12 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 17:16:45 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ int		error_reso(char a)
 	ft_putstr_fd("Error\nLa résolution enregistré n'est pas correcte.\n", 1);
 	if (a == 1)
 		ft_putstr_fd("Attention il faut minimum 200 de resolution pour"
-		"une bonne exécution du jeu.\n", 1);
-	if (a == 2)
-		ft_putstr_fd("Attention il faut aue l'axe x soit au moins"
-			"egal à l'axe y\n", 1);
+		" une bonne exécution du jeu.\n", 1);
 	return (-1);
 }
 
@@ -35,13 +32,16 @@ int		error_text(char *str, char *line)
 
 int		error_param(char a)
 {
-	ft_putstr_fd("Error\n");
+	ft_putstr_fd("Error\n", 1);
 	if (a == 1)
 		ft_putstr_fd("Il y a des problèmes sur les paramètres de"
 		" config.\n", 1);
 	if (a == 2)
 		ft_putstr_fd("Il y a un problème sur une alloction"
-		"de mémoire.\n", 1);
+		" de mémoire.\n", 1);
+	if (a == 3)
+		ft_putstr_fd("Il y a des doublons d'arguments dans le config"
+		" file\n", 1);
 	return (-1);
 }
 

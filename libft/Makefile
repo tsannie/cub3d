@@ -6,7 +6,7 @@
 #    By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/11 08:07:49 by tsannie           #+#    #+#              #
-#    Updated: 2021/01/21 13:12:51 by tsannie          ###   ########.fr        #
+#    Updated: 2021/01/28 16:04:54 by tsannie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ ft_putuihex.c ft_nbcharint.c ft_nbcharhex.c ft_nbcharuint.c ft_lstnew.c \
 ft_nbcharuihex.c ft_putstrn_fd.c ft_minvalue.c ft_maxvalue.c ft_putuihexm.c \
 get_next_line.c ft_lstadd_back.c ft_lstlast.c ft_lstsize.c ft_lstmap.c \
 ft_lstadd_front.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c\
-ft_iscolor.c ft_ispair.c
+ft_iscolor.c ft_ispair.c ft_streql.c
 
 OBJ			= $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 13:57:08 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/26 21:33:42 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 17:16:28 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int		trim_reso(char *line, int *n, t_param *set)
 	set->res_y = ft_atoi(&line[i]);
 	if (set->res_x < 200 || set->res_y < 200)
 		return (error_reso(1));
-	if (set->res_x < set->res_y)
-		return (error_reso(2));
 	set->res_x = set->res_x > 1920 ? 1920 : set->res_x;
 	set->res_y = set->res_y > 1080 ? 1080 : set->res_y;
 	(*n)++;
@@ -108,6 +106,21 @@ int		clr_ceiling(char *line, int *n, t_param *set)
 	return (1);
 }
 
+int		test_directo(char *str)
+{
+	int fd;
+
+	fd = open(str, O_DIRECTORY);
+	if (fd != -1)
+	{
+		close(fd);
+		return (error_text("le config file (.cub).\n"
+			"En effet c'est un dossier et non un fichier.\n", str));
+	}
+	close(fd);
+	return (0);
+}
+
 int		param_trim(char *str, t_param *set)
 {
 	int		fd;
@@ -116,7 +129,7 @@ int		param_trim(char *str, t_param *set)
 	int		k;
 	int		l;
 
-	if (!(line = malloc(sizeof(char**))))
+	if (!(line = malloc(sizeof(char**))) || test_directo(str) == -1)
 		return (-1);
 	fd = open(str, O_RDONLY);
 	if (fd < 1 || correct_name(str) == 0)

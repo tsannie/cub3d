@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:00:03 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/13 12:17:54 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 16:24:32 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int		main(int argc, char **argv)
 		print_map(set);
 		start_cub(set);
 		free(set);
+	}
+	else if (argc == 3)
+	{
+		if (ft_streql(argv[2], "--save") == 1)
+			printf("Lets go save");
 	}
 	return (0);
 }

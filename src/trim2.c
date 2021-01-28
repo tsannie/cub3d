@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 13:14:47 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 15:22:40 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 17:08:41 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,18 @@ int		trim_map(char *line, t_param *set)
 
 int		next2_gnl(char *str, int *n, t_param *set, int i)
 {
-	if (str[i] == 'S' && *n == 5)
+	if (str[i] == 'S')
 		return (trim_texts(&str[i], n, set));
-	if (str[i] == 'F' && *n == 6)
+	else if (str[i] == 'F')
 		return (clr_ground(&str[i], n, set));
-	if (str[i] == 'C' && *n == 7)
+	else if (str[i] == 'C')
 		return (clr_ceiling(&str[i], n, set));
-	if (*n == 8)
+	else if (*n == 8)
 		return (trim_map(str, set));
-	if (str[i] != ' ')
+	else if (str[i] != ' ')
 		return (error_param(1));
+	else if (*n > 8)
+		return (error_param(3));
 	return (-2);
 }
 
@@ -81,17 +83,18 @@ int		next_gnl(char *str, int *n, t_param *set)
 	i = 0;
 	while (str[i] || (str[0] == '\0' && *n == 8 && set->size_map_x != 0))
 	{
-		if (str[i] == 'R' && *n == 0)
+		if (str[i] == 'R')
 			return (trim_reso(&str[i], n, set));
-		if ((str[i] == 'N' && str[i + 1] == 'O') && *n == 1)
+		else if (str[i] == 'N' && str[i + 1] == 'O')
 			return (trim_textno(&str[i], n, set));
-		if ((str[i] == 'S' && str[i + 1] == 'O') && *n == 2)
+		else if (str[i] == 'S' && str[i + 1] == 'O')
 			return (trim_textso(&str[i], n, set));
-		if ((str[i] == 'W' && str[i + 1] == 'E') && *n == 3)
+		else if (str[i] == 'W' && str[i + 1] == 'E')
 			return (trim_textwe(&str[i], n, set));
-		if ((str[i] == 'E' && str[i + 1] == 'A') && *n == 4)
+		else if (str[i] == 'E' && str[i + 1] == 'A')
 			return (trim_textea(&str[i], n, set));
-		ret = next2_gnl(str, n, set, i);
+		else
+			ret = next2_gnl(str, n, set, i);
 		if (ret != -2)
 			return (ret);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 12:32:24 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 15:21:33 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 15:38:54 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	put_color_sprite(t_param *set, float x, float y)
 		+ ((int)set->xspe_spr * 4) + 1];
 	set->T_b = set->addrSp[(((int)set->yspe) * set->line_lengthSp)
 		+ ((int)set->xspe_spr * 4) + 0];
-	set->yspe += (set->lgr_spr / (float)(set->res_y * (set->size_cub) / 47));
+	set->yspe += (set->lgr_spr / (float)(set->res_y * (set->size_cub) / 51));
 	if (set->yspe > 64)
 		set->yspe = 64;
 	if (((y <= set->res_y) && (y >= 0)) && ((x <= set->res_x) && (x >= 0)))

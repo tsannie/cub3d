@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:00:03 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 16:24:32 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 23:53:07 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,61 @@ void	init(t_param *set)
 	set->f_r = -1;
 	set->f_g = -1;
 	set->size_map_x = 0;
+}
+
+void	free_struct(t_param *set)
+{
+	int i;
+	int e;
+
+	if (set->text_no)
+		free(set->text_no);
+	if (set->text_so)
+		free(set->text_so);
+	if (set->text_we)
+		free(set->text_we);
+	if (set->text_ea)
+		free(set->text_ea);
+	if (set->text_s)
+		free(set->text_s);
+	i = 0;
+	while (set->map[i])
+	{
+		e = 0;
+		while (set->map[i][e])
+		{
+			//free(set->map[i][e]);
+			e++;
+		}
+		free(set->map[i]);
+		i++;
+	}
+	if (set->map)
+		free(set->map); // pas sur
+	if (set->cpy)
+		free(set->cpy);
+	if (set->addr)
+		free(set->addr);
+	if (set->addrN)
+		free(set->addrN);
+	if (set->addrS)
+		free(set->addrS);
+	if (set->addrE)
+		free(set->addrE);
+	if (set->addrW)
+		free(set->addrW);
+	if (set->addrSp)
+		free(set->addrSp);
+	printf("FREEEEE");
+
+/* 	void		*mlx;
+	void		*win;
+	void		*img;
+	void		*imgN;
+	void		*imgS;
+	void		*imgE;
+	void		*imgW;
+	void		*imgSp; */
 }
 
 int		main(int argc, char **argv)
@@ -36,6 +91,7 @@ int		main(int argc, char **argv)
 		print_struct(set);
 		print_map(set);
 		start_cub(set);
+		free_struct(set);
 		free(set);
 	}
 	else if (argc == 3)

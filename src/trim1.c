@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 13:57:08 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 17:16:28 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/28 23:29:12 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,50 @@ int		trim_reso(char *line, int *n, t_param *set)
 	while (line[i] == ' ')
 		i++;
 	set->res_x = ft_atoi(&line[i]);
-	while ((line[i] >= '0' && line[i] <= '9')
-	|| line[i] == '-' || line[i] == '+')
-	{
+	while (line[i] >= '0' && line[i] <= '9')
 		i++;
-	}
 	set->res_y = ft_atoi(&line[i]);
 	if (set->res_x < 200 || set->res_y < 200)
 		return (error_reso(1));
 	set->res_x = set->res_x > 1920 ? 1920 : set->res_x;
 	set->res_y = set->res_y > 1080 ? 1080 : set->res_y;
+	while (line[i] == ' ')
+		i++;
+	while (line[i] >= '0' && line[i] <= '9')
+		i++;
+	while (line[i])
+	{
+		if (line[i] != ' ')
+			return (error_reso(0));
+		i++;
+	}
 	(*n)++;
 	return (1);
+}
+
+int		while_space(int i, char *line, int a)
+{
+	if (a == 1)
+	{
+		while (line[i] == ' ')
+			i++;
+	}
+	else if (a == 2)
+	{
+		while (ft_isdigit(line[i]) == 1 && line[i])
+			i++;
+	}
+	else if (a == 3)
+	{
+		i = while_space(i, line, 2);
+		while (line[i])
+		{
+			if (line[i] != ' ')
+				return (-1);
+			i++;
+		}
+	}
+	return (i);
 }
 
 int		clr_ground(char *line, int *n, t_param *set)
@@ -53,25 +85,23 @@ int		clr_ground(char *line, int *n, t_param *set)
 	int	i;
 
 	i = 1;
-	while (line[i] == ' ')
-		i++;
+	i = while_space(i, line, 1);
 	if (ft_isdigit(line[i]) == 1)
 	{
 		set->f_r = ft_atoi(&line[i]);
-		while (ft_isdigit(line[i]) == 1 && line[i])
-			i++;
+		i = while_space(i, line, 2);
 		if (line[i] != ',' || ft_isdigit(line[i + 1]) == 0)
 			return (error_color(1));
 		i++;
 		set->f_g = ft_atoi(&line[i]);
-		while (ft_isdigit(line[i]) == 1 && line[i])
-			i++;
+		i = while_space(i, line, 2);
 		if (line[i] != ',' || ft_isdigit(line[i + 1]) == 0)
 			return (error_color(1));
 		i++;
 		set->f_b = ft_atoi(&line[i]);
 	}
-	if (ft_iscolor(set->f_r, set->f_g, set->f_b) == 0)
+	if ((ft_iscolor(set->f_r, set->f_g, set->f_b) == 0)
+		|| (while_space(i, line, 3) == -1))
 		return (error_color(1));
 	(*n)++;
 	return (1);
@@ -82,25 +112,23 @@ int		clr_ceiling(char *line, int *n, t_param *set)
 	int	i;
 
 	i = 1;
-	while (line[i] == ' ')
-		i++;
+	i = while_space(i, line, 1);
 	if (ft_isdigit(line[i]) == 1)
 	{
 		set->c_r = ft_atoi(&line[i]);
-		while (ft_isdigit(line[i]) == 1 && line[i])
-			i++;
+		i = while_space(i, line, 2);
 		if (line[i] != ',' || ft_isdigit(line[i + 1]) == 0)
 			return (error_color(1));
 		i++;
 		set->c_g = ft_atoi(&line[i]);
-		while (ft_isdigit(line[i]) == 1 && line[i])
-			i++;
+		i = while_space(i, line, 2);
 		if (line[i] != ',' || ft_isdigit(line[i + 1]) == 0)
 			return (error_color(1));
 		i++;
 		set->c_b = ft_atoi(&line[i]);
 	}
-	if (ft_iscolor(set->c_r, set->c_g, set->c_b) == 0)
+	if ((ft_iscolor(set->c_r, set->c_g, set->c_b) == 0)
+		|| (while_space(i, line, 3) == -1))
 		return (error_color(2));
 	(*n)++;
 	return (1);

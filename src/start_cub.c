@@ -6,7 +6,7 @@
 /*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:21:56 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 09:49:33 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/01/29 08:44:57 by tsannie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int		start_cub(t_param *set)
 	mlx_hook(set->win, 2, 1L << 0, moove_player, set);
 	mlx_put_image_to_window(set->mlx, set->win, set->img, 0, 0);
 	mlx_loop(set->mlx);
+	free_struct(set);
 	return (0);
 }

@@ -27,6 +27,7 @@ void	free_struct(t_param *set)
 	int i;
 	int e;
 
+	printf("bien free");
 	if (set->text_no)
 		free(set->text_no);
 	if (set->text_so)

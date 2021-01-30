@@ -102,6 +102,5 @@ void	pres_sprite(t_param *set)
 				- set->start_size) / set->size_cub;
 		}
 	}
-	set->xspe_spr += (set->lgr_spr / (float)(set->res_y
-		* (set->size_cub) / 40));
+	set->xspe_spr += (set->lgr_spr / ((float)(set->res_y * set->res_x) / 12500));
 }

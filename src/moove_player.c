@@ -16,33 +16,42 @@ float	speed_moove(t_param *set)
 {
 	float	speed;
 
-	speed = set->size_cub / 3;
+	speed = set->size_cub / 5;
 	return (speed);
 }
 
-void	leave_hook(t_param *set)
+int		leave_hook(t_param *set)
 {
-	mlx_destroy_image(set->mlx, set->img);
-	mlx_destroy_image(set->mlx, set->imgN);
-	mlx_destroy_image(set->mlx, set->imgS);
-	mlx_destroy_image(set->mlx, set->imgE);
-	mlx_destroy_image(set->mlx, set->imgW);
-	mlx_destroy_image(set->mlx, set->imgSp);
-	mlx_clear_window(set->mlx, set->win);
-	mlx_destroy_window(set->mlx, set->win);
+	if (set->img)
+		mlx_destroy_image(set->mlx, set->img);
+	if (set->imgN)
+		mlx_destroy_image(set->mlx, set->imgN);
+	if (set->imgS)
+		mlx_destroy_image(set->mlx, set->imgS);
+	if (set->imgE)
+		mlx_destroy_image(set->mlx, set->imgE);
+	if (set->imgW)
+		mlx_destroy_image(set->mlx, set->imgW);
+	if (set->imgSp)
+		mlx_destroy_image(set->mlx, set->imgSp);
+	//mlx_clear_window(set->mlx, set->win);
+	if (set->win)
+		mlx_destroy_window(set->mlx, set->win);
+	printf("hey");
+	free_struct(set);
 	exit(0);
 }
 
 int		next_moove2(int keycode, t_param *set)
 {
-	if (keycode == 123)
+	if (keycode == 65361)
 	{
 		set->orient_p = (set->orient_p <= -M_PI) ? M_PI - M_PI / 24
 		: set->orient_p - M_PI / 24;
 		if (minimap(set, 0) == -1)
 			leave_hook(set);
 	}
-	else if (keycode == 124)
+	else if (keycode == 65363)
 	{
 		set->orient_p = (set->orient_p >= M_PI) ? -M_PI + M_PI / 24
 				: set->orient_p + M_PI / 24;
@@ -56,7 +65,7 @@ int		next_moove2(int keycode, t_param *set)
 
 int		next_moove1(int keycode, t_param *set)
 {
-	if (keycode == 2)
+	if (keycode == 100)
 	{
 		set->pps_x = set->pps_x - (sin(set->orient_p) * speed_moove(set));
 		set->ppe_x = set->ppe_x - (sin(set->orient_p) * speed_moove(set));
@@ -65,7 +74,7 @@ int		next_moove1(int keycode, t_param *set)
 		if (minimap(set, 4) == -1)
 			leave_hook(set);
 	}
-	else if (keycode == 0)
+	else if (keycode == 97)
 	{
 		set->pps_x = set->pps_x + (sin(set->orient_p) * speed_moove(set));
 		set->ppe_x = set->ppe_x + (sin(set->orient_p) * speed_moove(set));
@@ -84,7 +93,7 @@ int		next_moove1(int keycode, t_param *set)
 
 int		moove_player(int keycode, t_param *set)
 {
-	if (keycode == 13)
+	if (keycode == 119)
 	{
 		set->pps_y = set->pps_y + (sin(set->orient_p) * speed_moove(set));
 		set->ppe_y = set->ppe_y + (sin(set->orient_p) * speed_moove(set));
@@ -93,7 +102,7 @@ int		moove_player(int keycode, t_param *set)
 		if (minimap(set, 1) == -1)
 			leave_hook(set);
 	}
-	else if (keycode == 1)
+	else if (keycode == 115)
 	{
 		set->pps_y = set->pps_y - (sin(set->orient_p) * speed_moove(set));
 		set->ppe_y = set->ppe_y - (sin(set->orient_p) * speed_moove(set));

@@ -97,8 +97,6 @@ void	map_in_minimap(t_param *set, int a)
 int		minimap(t_param *set, int a)
 {
 	init_minimap(set);
-	if (a != -2)
-		print_ground(set);
 	map_in_minimap(set, a);
 	if (a != -2)
 	{

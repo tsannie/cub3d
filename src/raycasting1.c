@@ -32,21 +32,28 @@ void	color_wall(t_param *set, char *addr, int l_lenght, int *cord)
 	if (set->xspe > 64)
 		set->xspe = 0;
 	x = cord[0];
-	while (x < cord[2])
+	y = 0;
+	while (y < cord[1])
 	{
-		y = cord[1];
-		while (y < cord[3])
-		{
-			set->T_r = addr[(((int)set->yspe) * l_lenght)
-				+ ((int)set->xspe * 4) + 2];
-			set->T_g = addr[(((int)set->yspe) * l_lenght)
-				+ ((int)set->xspe * 4) + 1];
-			set->T_b = addr[(((int)set->yspe) * l_lenght)
-				+ ((int)set->xspe * 4) + 0];
-			put_color_wall(set, x, y);
-			y++;
-		}
-		x++;
+		my_mlx_pixel_put(set, x, y, create_color(set->c_r, set->c_g, set->c_b));
+		y++;
+	}
+	y = cord[1];
+	while (y < cord[3])
+	{
+		set->T_r = addr[(((int)set->yspe) * l_lenght)
+			+ ((int)set->xspe * 4) + 2];
+		set->T_g = addr[(((int)set->yspe) * l_lenght)
+			+ ((int)set->xspe * 4) + 1];
+		set->T_b = addr[(((int)set->yspe) * l_lenght)
+			+ ((int)set->xspe * 4) + 0];
+		put_color_wall(set, x, y);
+		y++;
+	}
+	while (y <= set->res_y)
+	{
+		my_mlx_pixel_put(set, x, y, create_color(set->f_r, set->f_g, set->f_b));
+		y++;
 	}
 }
 

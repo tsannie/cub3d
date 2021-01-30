@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	print_ground2(t_param *set, int e)
+/* void	print_ground2(t_param *set, int e)
 {
 	int	i;
 
@@ -50,7 +50,7 @@ void	print_ground(t_param *set)
 	}
 	print_ground2(set, e);
 }
-
+ */
 void	save_pos(t_param *set)
 {
 	float	size;

@@ -39,8 +39,6 @@ int		trim_reso(char *line, int *n, t_param *set)
 	set->res_y = ft_atoi(&line[i]);
 	if (set->res_x < 200 || set->res_y < 200)
 		return (error_reso(1));
-	set->res_x = set->res_x > 1920 ? 1920 : set->res_x;
-	set->res_y = set->res_y > 1080 ? 1080 : set->res_y;
 	while (line[i] == ' ')
 		i++;
 	while (line[i] >= '0' && line[i] <= '9')

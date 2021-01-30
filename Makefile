@@ -12,10 +12,11 @@
 
 NAME		= cub3D
 CC			= @gcc
-CFLAGS		= -Wall -Wextra -Werror
-MLX			= -I/minilibx_opengl_20191021 -g -L minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit
+CFLAGS		= -Wall -Wextra -Werror -g #-fsanitize=address
+MLX			= ./minilibx-linux -lmlx -lXext -lX11 -lm
 RM			= @rm -rf
 LIBFT		= ./libft
+
 
 BLACK		:= $(shell tput -Txterm setaf 0)
 RED			:= $(shell tput -Txterm setaf 1)
@@ -46,7 +47,7 @@ $(NAME): 	$(OBJ)
 			@echo "${PURPLE}${BOLD}Start compile ...${END}"
 			@$(MAKE) -C $(LIBFT)
 			@echo "${GREEN}The $(NAMELIB) ${GREEN}has been build !${END}"
-			$(CC) $(CFLAGS) -I/includes $(MLX) ./libft/libft.a -o $(NAME) $(OBJ) $(OBJ_BONUS)
+			$(CC) $(CFLAGS) -I/includes -I/minilibx-linux ./libft/libft.a -o $(NAME) $(OBJ) $(OBJ_BONUS) -Llibft -lft -L $(MLX)
 			@echo "${GREEN}The game $(NAMEC) ${GREEN}has been build !${END}"
 
 clean:

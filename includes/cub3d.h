@@ -21,10 +21,13 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../minilibx_opengl_20191021/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdio.h>
 
 typedef struct	s_param{
+	int			screenx;
+	int			screeny;
 	int			res_x;
 	int			res_y;
 
@@ -176,6 +179,9 @@ void	re_alloc(t_param *set);
 void	save_pos(t_param *set);
 void	align_text(t_param *set);
 void	pres_sprite(t_param *set);
+
+int		leave_hook(t_param *set);
+void	free_struct(t_param *set);
 
 int		create_color(int r, int g, int b);
 int		print_spite(t_param *set);

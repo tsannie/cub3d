@@ -25,9 +25,7 @@ void	init(t_param *set)
 void	free_struct(t_param *set)
 {
 	int i;
-	int e;
 
-	printf("bien free");
 	if (set->text_no)
 		free(set->text_no);
 	if (set->text_so)
@@ -39,43 +37,18 @@ void	free_struct(t_param *set)
 	if (set->text_s)
 		free(set->text_s);
 	i = 0;
-	while (set->map[i])
-	{
-		e = 0;
-		while (set->map[i][e])
-		{
-			//free(set->map[i][e]);
-			e++;
-		}
-		free(set->map[i]);
-		i++;
-	}
 	if (set->map)
-		free(set->map); // pas sur
+	{
+		while (set->map[i])
+		{
+			free(set->map[i]);
+			i++;
+		}
+		free(set->map);
+	} 
 	if (set->cpy)
 		free(set->cpy);
-	if (set->addr)
-		free(set->addr);
-	if (set->addrN)
-		free(set->addrN);
-	if (set->addrS)
-		free(set->addrS);
-	if (set->addrE)
-		free(set->addrE);
-	if (set->addrW)
-		free(set->addrW);
-	if (set->addrSp)
-		free(set->addrSp);
 	printf("FREEEEE");
-
-/* 	void		*mlx;
-	void		*win;
-	void		*img;
-	void		*imgN;
-	void		*imgS;
-	void		*imgE;
-	void		*imgW;
-	void		*imgSp; */
 }
 
 int		main(int argc, char **argv)
@@ -102,3 +75,5 @@ int		main(int argc, char **argv)
 	}
 	return (0);
 }
+
+// gcc -fsanitize=leak src/*.c libft/*.c -L./minilibx-linux -lmlx -lXext -lX11 -lm

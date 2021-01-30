@@ -18,9 +18,9 @@ int		start_cub(t_param *set)
 	set->mlx = mlx_init();
 	if (assign_text(set) == -1)
 		return (-1);
-//	mlx_get_screen_size(set->mlx, &set->screenx, &set->screeny);
-//	set->res_x = (set->res_x > set->screenx) ? set->screenx : set->res_x;
-//	set->res_y = (set->res_y > set->screeny) ? set->screeny : set->res_y;
+	mlx_get_screen_size(set->mlx, &set->screenx, &set->screeny);
+	set->res_x = (set->res_x > set->screenx) ? set->screenx : set->res_x;
+	set->res_y = (set->res_y > set->screeny) ? set->screeny : set->res_y;
 	set->win = mlx_new_window(set->mlx, set->res_x, set->res_y, "Cub3D !");
 	set->img = mlx_new_image(set->mlx, set->res_x, set->res_y);
 	set->addr = mlx_get_data_addr(set->img, &set->bits_per_pixel,

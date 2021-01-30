@@ -20,7 +20,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
-# include "../minilibx_opengl_20191021/mlx.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdio.h>

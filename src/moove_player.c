@@ -34,10 +34,8 @@ int		leave_hook(t_param *set)
 		mlx_destroy_image(set->mlx, set->imgW);
 	if (set->imgSp)
 		mlx_destroy_image(set->mlx, set->imgSp);
-	//mlx_clear_window(set->mlx, set->win);
 	if (set->win)
 		mlx_destroy_window(set->mlx, set->win);
-	printf("hey");
 	free_struct(set);
 	exit(0);
 }
@@ -58,7 +56,7 @@ int		next_moove2(int keycode, t_param *set)
 		if (minimap(set, 0) == -1)
 			leave_hook(set);
 	}
-	else if (keycode == 53)
+	else if (keycode == 65307)
 		leave_hook(set);
 	return (0);
 }

@@ -49,11 +49,8 @@ int		trim_map(char *line, t_param *set)
 		else
 			return (error_map(2));
 	}
-	if (!set->cpy)
-		set->cpy = ft_strdup(line);
-	else
-		set->cpy = ft_strjoin(set->cpy, line);
-	set->cpy = ft_strjoin(set->cpy, "\n");
+	set->cpy = ft_strjoin_free(set->cpy, line);
+	set->cpy = ft_strjoin_free(set->cpy, "\n");
 	set->size_map_x++;
 	return (1);
 }

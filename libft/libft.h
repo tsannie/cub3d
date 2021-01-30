@@ -91,5 +91,6 @@ int					get_next_line(int fd, char **line);
 int					ft_iscolor(int a, int b, int c);
 int					ft_ispair(int a);
 int					ft_streql(const char *s1, const char *s2);
+char				*ft_strjoin_free(char *s1, char *s2);
 
 #endif

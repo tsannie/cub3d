@@ -3,55 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   trim1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 13:57:08 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 23:29:12 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/02/01 01:41:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int		check_open(char *str)
-{
-	int fd;
-
-	fd = open(str, O_RDONLY);
-	if (fd < 1)
-	{
-		close(fd);
-		return (-1);
-	}
-	close(fd);
-	return (0);
-}
-
-int		trim_reso(char *line, int *n, t_param *set)
-{
-	int		i;
-
-	i = 1;
-	while (line[i] == ' ')
-		i++;
-	set->res_x = ft_atoi(&line[i]);
-	while (line[i] >= '0' && line[i] <= '9')
-		i++;
-	set->res_y = ft_atoi(&line[i]);
-	if (set->res_x < 200 || set->res_y < 200)
-		return (error_reso(1));
-	while (line[i] == ' ')
-		i++;
-	while (line[i] >= '0' && line[i] <= '9')
-		i++;
-	while (line[i])
-	{
-		if (line[i] != ' ')
-			return (error_reso(0));
-		i++;
-	}
-	(*n)++;
-	return (1);
-}
 
 int		while_space(int i, char *line, int a)
 {
@@ -132,46 +91,31 @@ int		clr_ceiling(char *line, int *n, t_param *set)
 	return (1);
 }
 
-int		test_directo(char *str)
+int		there_is_color(t_param *set)
 {
-	int fd;
-
-	fd = open(str, O_DIRECTORY);
-	if (fd != -1)
-	{
-		close(fd);
-		return (error_text("le config file (.cub).\n"
-			"En effet c'est un dossier et non un fichier.\n", str));
-	}
-	close(fd);
+	if (ft_iscolor(set->c_r, set->c_g, set->c_b) == 0)
+		return (error_color(2));
+	if (ft_iscolor(set->f_r, set->f_g, set->f_b) == 0)
+		return (error_color(1));
+	if (set->res_x == -1 || set->res_y == -1)
+		return (error_reso(0));
 	return (0);
 }
 
 int		param_trim(char *str, t_param *set)
 {
 	int		fd;
-	char	**line;
-	int		n;
-	int		k;
-	int		l;
 
-	if (!(line = malloc(sizeof(char**))) || test_directo(str) == -1)
+	if (test_directo(str) == -1)
 		return (-1);
 	fd = open(str, O_RDONLY);
 	if (fd < 1 || correct_name(str) == 0)
 		return (error_text("le config file (.cub).\n", str));
-	n = 0;
-	k = 1;
-	l = 1;
-	while (l == 1 && k == 1)
-	{
-		k = get_next_line(fd, line);
-		if ((l = next_gnl(*line, &n, set)) == -1)
-			return (-1);
-		free(*line);
-	}
+	if (search_line(set, fd) == -1)
+		return (-1);
+	if (there_is_color(set) == -1)
+		return (-1);
 	close(fd);
 	set->map = ft_split(set->cpy, '\n');
-	free(line);
 	return (0);
 }

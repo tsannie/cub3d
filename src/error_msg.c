@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:38:30 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 22:48:12 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/02/01 00:47:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		error_param(char a)
 		" de mémoire.\n", 1);
 	if (a == 3)
 		ft_putstr_fd("Il y a des doublons d'arguments dans le config"
-		" file\n", 1);
+		" file.\n", 1);
 	return (-1);
 }
 
@@ -52,7 +52,7 @@ int		error_color(int a)
 		ft_putstr_fd("sol (F)\n", 1);
 	if (a == 2)
 		ft_putstr_fd("plafond (C)\n", 1);
-	ft_putstr_fd("Merci de relancer avec un format correct\n"
+	ft_putstr_fd("Merci de relancer avec un format correct.\n"
 	"Exemple: \"C 220,100,20\"\n", 1);
 	return (-1);
 }

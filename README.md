@@ -1,5 +1,7 @@
 # cub3d
+
 Mon premier RayCaster avec la minilibX
+@author tsannie
 
 Résumé: Ce projet est inspiré du jeu éponyme mondialement connu, considéré comme
 le premier FPS jamais développé. Il vous permettra d’explorer la technique du

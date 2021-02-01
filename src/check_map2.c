@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:05:49 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/27 17:33:34 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/02/01 02:04:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ int		assign_text2(t_param *set)
 	int	i;
 
 	i = 1;
-	if ((set->imgW = mlx_xpm_file_to_image(set->mlx, set->text_we,
+	if ((set->imgw = mlx_xpm_file_to_image(set->mlx, set->text_we,
 		&i, &i)) == NULL)
 		if (error_text("la texture OUEST\n", set->text_we) == -1)
 			return (-1);
-	set->addrW = mlx_get_data_addr(set->imgW, &set->bits_per_pixelW,
-		&set->line_lengthW, &set->endianW);
-	if ((set->imgSp = mlx_xpm_file_to_image(set->mlx, set->text_s,
+	set->addrw = mlx_get_data_addr(set->imgw, &set->bits_per_pixelw,
+		&set->line_lengthw, &set->endianw);
+	if ((set->imgsp = mlx_xpm_file_to_image(set->mlx, set->text_s,
 		&i, &i)) == NULL)
 		if (error_text("la texture du SPRITE\n", set->text_s) == -1)
 			return (-1);
-	set->addrSp = mlx_get_data_addr(set->imgSp, &set->bits_per_pixelSp,
-		&set->line_lengthSp, &set->endianSp);
+	set->addrsp = mlx_get_data_addr(set->imgsp, &set->bits_per_pixelsp,
+		&set->line_lengthsp, &set->endiansp);
 	return (0);
 }
 
@@ -75,24 +75,24 @@ int		assign_text(t_param *set)
 	int	i;
 
 	i = 1;
-	if ((set->imgS = mlx_xpm_file_to_image(set->mlx, set->text_so,
+	if ((set->imgs = mlx_xpm_file_to_image(set->mlx, set->text_so,
 		&i, &i)) == NULL)
 		if (error_text("la texture SUD\n", set->text_so) == -1)
 			return (-1);
-	set->addrS = mlx_get_data_addr(set->imgS, &set->bits_per_pixelS,
-		&set->line_lengthS, &set->endianS);
-	if ((set->imgN = mlx_xpm_file_to_image(set->mlx, set->text_no,
+	set->addrs = mlx_get_data_addr(set->imgs, &set->bits_per_pixels,
+		&set->line_lengths, &set->endians);
+	if ((set->imgn = mlx_xpm_file_to_image(set->mlx, set->text_no,
 		&i, &i)) == NULL)
 		if (error_text("la texture NORD\n", set->text_no) == -1)
 			return (-1);
-	set->addrN = mlx_get_data_addr(set->imgN, &set->bits_per_pixelN,
-		&set->line_lengthN, &set->endianN);
-	if ((set->imgE = mlx_xpm_file_to_image(set->mlx, set->text_ea,
+	set->addrn = mlx_get_data_addr(set->imgn, &set->bits_per_pixeln,
+		&set->line_lengthn, &set->endiann);
+	if ((set->imge = mlx_xpm_file_to_image(set->mlx, set->text_ea,
 		&i, &i)) == NULL)
 		if (error_text("la texture EAST\n", set->text_ea) == -1)
 			return (-1);
-	set->addrE = mlx_get_data_addr(set->imgE, &set->bits_per_pixelE,
-		&set->line_lengthE, &set->endianE);
+	set->addre = mlx_get_data_addr(set->imge, &set->bits_per_pixele,
+		&set->line_lengthe, &set->endiane);
 	if (assign_text2(set) == -1)
 		return (-1);
 	return (0);

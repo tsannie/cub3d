@@ -3,54 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   display_tool2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 09:46:26 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 15:18:19 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/02/01 02:00:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-/* void	print_ground2(t_param *set, int e)
+void	print_ground(t_param *set, int a, int *cord)
 {
-	int	i;
+	float x;
+	float y;
 
-	while (e < set->res_y)
+	x = cord[0];
+	if (a == 0)
 	{
-		i = 0;
-		while (i < set->res_x)
+		y = 0;
+		while (y < cord[1])
 		{
-			my_mlx_pixel_put(set, i, e, create_color(set->f_r,
-				set->f_g, set->f_b));
-			i++;
-		}
-		e++;
-	}
-}
-
-void	print_ground(t_param *set)
-{
-	int	i;
-	int	e;
-	int mid;
-
-	mid = (set->res_y / 2);
-	e = 0;
-	while (e < mid)
-	{
-		i = 0;
-		while (i < set->res_x)
-		{
-			my_mlx_pixel_put(set, i, e, create_color(set->c_r,
+			my_mlx_pixel_put(set, x, y, create_color(set->c_r,
 				set->c_g, set->c_b));
-			i++;
+			y++;
 		}
-		e++;
 	}
-	print_ground2(set, e);
+	if (a == 1)
+	{
+		y = cord[3];
+		while (y <= set->res_y)
+		{
+			my_mlx_pixel_put(set, x, y, create_color(set->f_r,
+				set->f_g, set->f_b));
+			y++;
+		}
+	}
 }
- */
+
 void	save_pos(t_param *set)
 {
 	float	size;

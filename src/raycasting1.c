@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 09:46:14 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 15:21:33 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/02/01 02:03:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	put_color_wall(t_param *set, float x, float y)
 	if (set->yspe > 64)
 		set->yspe = 64;
 	if (((y <= set->res_y) && (y >= 0)) && ((x <= set->res_x) && (x >= 0)))
-		my_mlx_pixel_put(set, x, y, (((set->T_r & 0xff) << 16)
-			+ ((set->T_g & 0xff) << 8) + (set->T_b & 0xff)));
+		my_mlx_pixel_put(set, x, y, (((set->t_r & 0xff) << 16)
+			+ ((set->t_g & 0xff) << 8) + (set->t_b & 0xff)));
 }
 
 void	color_wall(t_param *set, char *addr, int l_lenght, int *cord)
@@ -32,29 +32,20 @@ void	color_wall(t_param *set, char *addr, int l_lenght, int *cord)
 	if (set->xspe > 64)
 		set->xspe = 0;
 	x = cord[0];
-	y = 0;
-	while (y < cord[1])
-	{
-		my_mlx_pixel_put(set, x, y, create_color(set->c_r, set->c_g, set->c_b));
-		y++;
-	}
+	print_ground(set, 0, cord);
 	y = cord[1];
 	while (y < cord[3])
 	{
-		set->T_r = addr[(((int)set->yspe) * l_lenght)
+		set->t_r = addr[(((int)set->yspe) * l_lenght)
 			+ ((int)set->xspe * 4) + 2];
-		set->T_g = addr[(((int)set->yspe) * l_lenght)
+		set->t_g = addr[(((int)set->yspe) * l_lenght)
 			+ ((int)set->xspe * 4) + 1];
-		set->T_b = addr[(((int)set->yspe) * l_lenght)
+		set->t_b = addr[(((int)set->yspe) * l_lenght)
 			+ ((int)set->xspe * 4) + 0];
 		put_color_wall(set, x, y);
 		y++;
 	}
-	while (y <= set->res_y)
-	{
-		my_mlx_pixel_put(set, x, y, create_color(set->f_r, set->f_g, set->f_b));
-		y++;
-	}
+	print_ground(set, 1, cord);
 }
 
 int		ray_cast(t_param *set, float lgr, char *addr, int l_lenght)
@@ -91,12 +82,12 @@ int		ray(t_param *set, float lgr)
 	{
 		if (((set->angle > 0 && set->angle < M_PI) || set->angle < -M_PI))
 		{
-			if (ray_cast(set, lgr, set->addrS, set->line_lengthS) == -1)
+			if (ray_cast(set, lgr, set->addrs, set->line_lengths) == -1)
 				return (-1);
 		}
 		else
 		{
-			if (ray_cast(set, lgr, set->addrN, set->line_lengthN) == -1)
+			if (ray_cast(set, lgr, set->addrn, set->line_lengthn) == -1)
 				return (-1);
 		}
 	}
@@ -104,12 +95,12 @@ int		ray(t_param *set, float lgr)
 	{
 		if (((set->angle > -M_PI_2 && set->angle < M_PI_2)))
 		{
-			if (ray_cast(set, lgr, set->addrE, set->line_lengthE) == -1)
+			if (ray_cast(set, lgr, set->addre, set->line_lengthe) == -1)
 				return (-1);
 		}
 		else
-			return (ray_cast(set, lgr, set->addrW,
-				set->line_lengthW) == -1 ? -1 : 0);
+			return (ray_cast(set, lgr, set->addrw,
+				set->line_lengthw) == -1 ? -1 : 0);
 	}
 	return (0);
 }

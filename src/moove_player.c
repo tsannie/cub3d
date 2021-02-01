@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moove_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:32 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 15:18:12 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/02/01 01:56:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ int		leave_hook(t_param *set)
 {
 	if (set->img)
 		mlx_destroy_image(set->mlx, set->img);
-	if (set->imgN)
-		mlx_destroy_image(set->mlx, set->imgN);
-	if (set->imgS)
-		mlx_destroy_image(set->mlx, set->imgS);
-	if (set->imgE)
-		mlx_destroy_image(set->mlx, set->imgE);
-	if (set->imgW)
-		mlx_destroy_image(set->mlx, set->imgW);
-	if (set->imgSp)
-		mlx_destroy_image(set->mlx, set->imgSp);
+	if (set->imgn)
+		mlx_destroy_image(set->mlx, set->imgn);
+	if (set->imgs)
+		mlx_destroy_image(set->mlx, set->imgs);
+	if (set->imge)
+		mlx_destroy_image(set->mlx, set->imge);
+	if (set->imgw)
+		mlx_destroy_image(set->mlx, set->imgw);
+	if (set->imgsp)
+		mlx_destroy_image(set->mlx, set->imgsp);
 	if (set->win)
 		mlx_destroy_window(set->mlx, set->win);
 	free_struct(set);

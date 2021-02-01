@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:12:21 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 15:17:02 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/02/01 01:19:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ void	pres_sprite(t_param *set)
 				- set->start_size) / set->size_cub;
 		}
 	}
-	set->xspe_spr += (set->lgr_spr / ((float)(set->res_y * set->res_x) / 12500));
+	set->xspe_spr += (set->lgr_spr / (float)(set->res_x
+		* (set->size_cub) / 55));
 }

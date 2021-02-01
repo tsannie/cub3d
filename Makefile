@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 11:00:45 by tsannie           #+#    #+#              #
-#    Updated: 2021/01/28 15:13:48 by tsannie          ###   ########.fr        #
+#    Updated: 2021/02/01 01:38:52 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= cub3D
 CC			= @gcc
-CFLAGS		= -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror
 MLX			= ./minilibx-linux -lmlx -lXext -lX11 -lm
 RM			= @rm -rf
 LIBFT		= ./libft
@@ -31,10 +31,10 @@ END			:= $(shell tput -Txterm sgr0)
 NAMEC		= ${BLUE}${BOLD}c$(RED)u$(GREEN)b$(PURPLE)3D${END}
 NAMELIB		= ${BLUE}${BOLD}Libft${END}
 
-SRC			= main.c trim1.c trim2.c error_msg.c tools_for_dev.c \
+SRC			= main.c trim1.c trim2.c trim3.c error_msg.c \
 trim_texture.c check_map1.c check_map2.c start_cub.c minimap.c \
 display_tool1.c display_tool2.c moove_player.c raycasting1.c raycasting2.c \
-raycasting3.c colision.c sprite.c
+raycasting3.c colision.c sprite.c bmp.c
 
 SRC_BONUS 	= \
 

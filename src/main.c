@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:00:03 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/28 23:53:07 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/02/01 01:43:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init(t_param *set)
 	set->f_r = -1;
 	set->f_g = -1;
 	set->size_map_x = 0;
+	if (set->save != 1)
+		set->save = 0;
 }
 
 void	free_struct(t_param *set)
@@ -45,35 +47,47 @@ void	free_struct(t_param *set)
 			i++;
 		}
 		free(set->map);
-	} 
+	}
 	if (set->cpy)
 		free(set->cpy);
-	printf("FREEEEE");
+}
+
+int		save(int argc, char **argv, t_param *set)
+{
+	if (argc == 3)
+	{
+		if (ft_streql(argv[2], "--save") == 1)
+			set->save = 1;
+		else
+		{
+			ft_putstr_fd("Error\nArgument inconnu.\n", 1);
+			return (-1);
+		}
+	}
+	return (0);
 }
 
 int		main(int argc, char **argv)
 {
 	t_param	*set;
 
-	if (argc == 2)
+	if (argc == 2 || argc == 3)
 	{
 		if (!(set = malloc(sizeof(t_param))))
+			return (error_param(2));
+		if (save(argc, argv, set) == -1)
 			return (-1);
 		init(set);
 		if (param_trim(argv[1], set) == -1 || check_map(set) == -1)
+		{
+			leave_hook(set);
+			free_struct(set);
+			free(set);
 			return (-1);
-		print_struct(set);
-		print_map(set);
+		}
 		start_cub(set);
 		free_struct(set);
 		free(set);
 	}
-	else if (argc == 3)
-	{
-		if (ft_streql(argv[2], "--save") == 1)
-			printf("Lets go save");
-	}
 	return (0);
 }
-
-// gcc -fsanitize=leak src/*.c libft/*.c -L./minilibx-linux -lmlx -lXext -lX11 -lm

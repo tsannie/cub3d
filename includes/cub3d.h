@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 11:24:41 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 12:22:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,8 @@ void			re_alloc(t_param *set);
 void			save_pos(t_param *set);
 void			align_text(t_param *set);
 void			pres_sprite(t_param *set);
+int				while_space(int i, char *line, int a);
+int				there_is_map(t_param *set);
 
 int				leave_hook(t_param *set);
 void			free_struct(t_param *set);

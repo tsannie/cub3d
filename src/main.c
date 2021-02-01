@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:00:03 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 11:23:49 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 12:09:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		save(int argc, char **argv, t_param *set)
 			set->save = 1;
 		else
 		{
+			free_struct(set);
 			ft_putstr_fd("Error\nArgument inconnu.\n", 1);
 			return (-1);
 		}
@@ -84,7 +85,6 @@ int		main(int argc, char **argv)
 		}
 		start_cub(set);
 		free_struct(set);
-		free(set);
 	}
 	return (0);
 }

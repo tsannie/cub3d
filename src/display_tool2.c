@@ -6,11 +6,36 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 09:46:26 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 02:00:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 12:17:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int		while_space(int i, char *line, int a)
+{
+	if (a == 1)
+	{
+		while (line[i] == ' ')
+			i++;
+	}
+	else if (a == 2)
+	{
+		while (ft_isdigit(line[i]) == 1 && line[i])
+			i++;
+	}
+	else if (a == 3)
+	{
+		i = while_space(i, line, 2);
+		while (line[i])
+		{
+			if (line[i] != ' ')
+				return (-1);
+			i++;
+		}
+	}
+	return (i);
+}
 
 void	print_ground(t_param *set, int a, int *cord)
 {

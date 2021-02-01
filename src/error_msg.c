@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:38:30 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 11:02:11 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 12:13:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ int		error_map(int a)
 		ft_putstr_fd("Tout les '0' ne sont pas entourés.\n", 1);
 	if (a == 5)
 		ft_putstr_fd("Tout les '2' ne sont pas entourés.\n", 1);
+	if (a == 6)
+		ft_putstr_fd("Aucune map.\n", 1);
 	return (-1);
 }

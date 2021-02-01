@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/23 11:00:45 by tsannie           #+#    #+#              #
-#    Updated: 2021/02/01 01:38:52 by user42           ###   ########.fr        #
+#    Updated: 2021/02/01 12:19:17 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ CFLAGS		= -Wall -Wextra -Werror
 MLX			= ./minilibx-linux -lmlx -lXext -lX11 -lm
 RM			= @rm -rf
 LIBFT		= ./libft
-
 
 BLACK		:= $(shell tput -Txterm setaf 0)
 RED			:= $(shell tput -Txterm setaf 1)
@@ -63,7 +62,5 @@ fclean:		clean
 				"(with ${BOLD}${WHITE}$@${END}${YELLOW}) !${END}"
 
 re:			fclean all
-
-test:		all clean
 
 .PHONY:		all test clean fclean re

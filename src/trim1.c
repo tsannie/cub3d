@@ -6,36 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 13:57:08 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 11:24:47 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 12:21:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int		while_space(int i, char *line, int a)
-{
-	if (a == 1)
-	{
-		while (line[i] == ' ')
-			i++;
-	}
-	else if (a == 2)
-	{
-		while (ft_isdigit(line[i]) == 1 && line[i])
-			i++;
-	}
-	else if (a == 3)
-	{
-		i = while_space(i, line, 2);
-		while (line[i])
-		{
-			if (line[i] != ' ')
-				return (-1);
-			i++;
-		}
-	}
-	return (i);
-}
 
 int		clr_ground(char *line, int *n, t_param *set)
 {
@@ -99,6 +74,15 @@ int		there_is_color(t_param *set)
 		return (error_color(1));
 	if (set->res_x == -1 || set->res_y == -1)
 		return (error_reso(0));
+	return (0);
+}
+
+int		there_is_map(t_param *set)
+{
+	if (!set->map)
+		return (error_map(6));
+	if (!set->map[0])
+		return (error_map(6));
 	return (0);
 }
 

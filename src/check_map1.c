@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsannie <tsannie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 09:08:46 by tsannie           #+#    #+#             */
-/*   Updated: 2021/01/13 12:20:15 by tsannie          ###   ########.fr       */
+/*   Updated: 2021/02/01 12:24:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int		one_spawn(t_param *set)
 
 int		check_map(t_param *set)
 {
+	if (there_is_map(set) == -1)
+		return (-1);
 	fill_map(set);
 	if (one_spawn(set) == -1)
 		return (-1);

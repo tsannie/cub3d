@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:05:49 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 02:04:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 11:21:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ int		assign_text2(t_param *set)
 		&set->line_lengthw, &set->endianw);
 	if ((set->imgsp = mlx_xpm_file_to_image(set->mlx, set->text_s,
 		&i, &i)) == NULL)
-		if (error_text("la texture du SPRITE\n", set->text_s) == -1)
-			return (-1);
+		return (error_text("la texture du SPRITE\n", set->text_s));
 	set->addrsp = mlx_get_data_addr(set->imgsp, &set->bits_per_pixelsp,
 		&set->line_lengthsp, &set->endiansp);
 	return (0);

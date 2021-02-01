@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 13:57:08 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 01:41:52 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 11:24:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ int		param_trim(char *str, t_param *set)
 	if (search_line(set, fd) == -1)
 		return (-1);
 	if (there_is_color(set) == -1)
+		return (-1);
+	if (all_text(set) == -1)
 		return (-1);
 	close(fd);
 	set->map = ft_split(set->cpy, '\n');

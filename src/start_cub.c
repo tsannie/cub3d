@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:21:56 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 00:01:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 11:06:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		start_cub(t_param *set)
 	set_orient(set);
 	set->mlx = mlx_init();
 	if (assign_text(set) == -1)
-		return (-1);
+		leave_hook(set);
 	mlx_get_screen_size(set->mlx, &set->screenx, &set->screeny);
 	set->res_x = (set->res_x > set->screenx) ? set->screenx : set->res_x;
 	set->res_y = (set->res_y > set->screeny) ? set->screeny : set->res_y;

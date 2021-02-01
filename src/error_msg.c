@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:38:30 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 00:47:04 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 11:02:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		error_text(char *str, char *line)
 {
 	ft_putstr_fd("Error\nProblème sur le chemin vers ", 1);
 	ft_putstr_fd(str, 1);
-	if (line[ft_strlen(line) - 1] == ' ')
+	if (line && line[ft_strlen(line) - 1] == ' ')
 		ft_putstr_fd("Attention aux espaces en fin de ligne !\n", 1);
 	return (-1);
 }

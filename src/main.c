@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:00:03 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 01:43:41 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 11:23:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,17 @@ void	free_struct(t_param *set)
 		free(set->text_ea);
 	if (set->text_s)
 		free(set->text_s);
-	i = 0;
+	i = -1;
 	if (set->map)
 	{
-		while (set->map[i])
-		{
+		while (set->map[++i])
 			free(set->map[i]);
-			i++;
-		}
 		free(set->map);
 	}
 	if (set->cpy)
 		free(set->cpy);
+	if (set)
+		free(set);
 }
 
 int		save(int argc, char **argv, t_param *set)
@@ -80,9 +79,7 @@ int		main(int argc, char **argv)
 		init(set);
 		if (param_trim(argv[1], set) == -1 || check_map(set) == -1)
 		{
-			leave_hook(set);
 			free_struct(set);
-			free(set);
 			return (-1);
 		}
 		start_cub(set);

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 17:59:31 by tsannie           #+#    #+#             */
-/*   Updated: 2021/02/01 02:06:42 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 11:24:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
+
+# include <stdio.h>
 
 typedef struct	s_param{
 	int			screenx;
@@ -142,6 +144,7 @@ int				check_open(char *str);
 int				test_directo(char *str);
 int				search_line(t_param *set, int fd);
 int				trim_map(char *line, t_param *set);
+int				all_text(t_param *set);
 
 int				error_reso(char a);
 int				error_param(char a);

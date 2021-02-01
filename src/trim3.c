@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 01:39:38 by user42            #+#    #+#             */
-/*   Updated: 2021/02/01 02:00:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/02/01 11:24:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,21 @@ int		test_directo(char *str)
 			"En effet c'est un dossier et non un fichier.\n", str));
 	}
 	close(fd);
+	return (0);
+}
+
+int		all_text(t_param *set)
+{
+	if (!(set->text_no))
+		return (error_text("la texture sud (NO).\n", set->text_no));
+	if (!(set->text_so))
+		return (error_text("la texture sud (SO).\n", set->text_so));
+	if (!(set->text_we))
+		return (error_text("la texture sud (WE).\n", set->text_we));
+	if (!(set->text_ea))
+		return (error_text("la texture sud (EA).\n", set->text_ea));
+	if (!(set->text_s))
+		return (error_text("la texture du sprite (S).\n", set->text_s));
 	return (0);
 }
 

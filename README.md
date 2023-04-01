@@ -10,7 +10,10 @@ This project is my first big project in C for my 42 cursus. In retrospect, this 
 
 ## 📝 Description
 
-The goal of this project is to create a 3D game engine using `raycasting`. The game engine is able to render walls, floors and ceilings, and to display sprites. The game engine is also able to move and rotate the player.
+The goal of this project is to create a 3D game engine using [raycasting](https://en.wikipedia.org/wiki/Ray_casting) like [Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D).
+The game engine is able to render walls, floors and ceilings, and to display sprites. The game engine is also able to move and rotate the player.
+
+![screen](https://upload.wikimedia.org/wikipedia/commons/e/e7/Simple_raycasting_with_fisheye_correction.gif)
 
 For map creation, we can design them directly with the `.cub` file:
 

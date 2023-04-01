@@ -6,7 +6,7 @@
 
 This project is my first big project in C for my 42 cursus. In retrospect, this project was a great learning experience for me and I would not have used the same approach if I had to do it again even though I was quite happy at the time (me from the future) 😅.
 
-![screen](https://i.imgur.com/dAN9lek.gif)
+![screen](https://i.imgur.com/VdbNdPU.gif)
 
 ## 📝 Description
 
